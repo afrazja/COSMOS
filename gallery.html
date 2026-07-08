@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Gallery — COSMOS</title>
+  <meta name="description" content="Fourteen of the greatest deep-space images ever taken, from the Hubble and James Webb space telescopes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-orb" aria-hidden="true"></span>
+      COSMOS
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="system.html">The System</a></li>
+      <li><a href="journey.html">The Journey</a></li>
+      <li><a href="sky.html" class="nav-live">Tonight's Sky<span class="live-dot" aria-hidden="true"></span></a></li>
+    </ul>
+    <a href="index.html#explore" class="nav-cta">Begin Journey</a>
+  </nav>
+
+  <main class="sky-page">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="sky-hero">
+      <p class="eyebrow">Hubble · James Webb</p>
+      <h1>The <em>gallery</em></h1>
+      <p class="section-sub sky-hero-sub">
+        Fourteen of the greatest photographs ever taken — by two telescopes,
+        of things no human eye will ever see up close. Click any image to go fullscreen.
+      </p>
+    </header>
+
+    <!-- ============ FILTERS + GRID ============ -->
+    <section class="section gallery-section" id="grid">
+      <div class="gallery-filters reveal" role="group" aria-label="Filter gallery">
+        <button class="chip on" data-filter="all">All</button>
+        <button class="chip" data-filter="nebula">Nebulae</button>
+        <button class="chip" data-filter="galaxy">Galaxies</button>
+        <button class="chip" data-filter="deep">Deep Fields</button>
+      </div>
+
+      <div class="masonry" id="masonry">
+        <p class="loading-pulse">Developing the film…</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <button class="lb-close" id="lb-close" aria-label="Close viewer">✕</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous image">‹</button>
+    <figure class="lb-figure">
+      <img id="lb-img" src="" alt="" />
+      <figcaption class="lb-caption">
+        <h3 id="lb-title"></h3>
+        <p id="lb-desc"></p>
+        <span class="lb-credit" id="lb-credit"></span>
+      </figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next image">›</button>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-orb" aria-hidden="true"></span>
+        COSMOS
+      </a>
+      <p class="footer-quote">"Somewhere, something incredible is waiting to be known." — Carl Sagan</p>
+      <p class="footer-fine">Imagery: NASA · ESA · CSA · STScI — Hubble &amp; James Webb space telescopes</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>

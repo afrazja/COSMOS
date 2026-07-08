@@ -1,0 +1,128 @@
+[
+ {
+  "file": "assets/gallery/cosmic-cliffs.webp",
+  "title": "Cosmic Cliffs — Carina Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "Webb’s first look into the Carina Nebula: a coastline of gas and dust seven light-years tall, where hundreds of new stars are igniting.",
+  "w": 1600,
+  "h": 927
+ },
+ {
+  "file": "assets/gallery/pillars-webb.webp",
+  "title": "Pillars of Creation",
+  "tag": "nebula",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "The most famous towers in astronomy, reimagined in Webb’s infrared — newborn stars glow inside columns of gas five light-years tall.",
+  "w": 1200,
+  "h": 1200
+ },
+ {
+  "file": "assets/gallery/southern-ring.webp",
+  "title": "Southern Ring Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "A dying star’s final act: shells of gas expelled over thousands of years, lit from within by the fading white dwarf at the center.",
+  "w": 1600,
+  "h": 742
+ },
+ {
+  "file": "assets/gallery/stephans-quintet.webp",
+  "title": "Stephan’s Quintet",
+  "tag": "galaxy",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "Five galaxies locked in a gravitational dance — two of them in mid-collision, sparking waves of new star formation.",
+  "w": 1042,
+  "h": 1536
+ },
+ {
+  "file": "assets/gallery/deep-field.webp",
+  "title": "Webb’s First Deep Field",
+  "tag": "deep",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "The deepest infrared view of the universe: thousands of galaxies in a patch of sky the size of a grain of sand at arm’s length.",
+  "w": 1600,
+  "h": 1633
+ },
+ {
+  "file": "assets/gallery/tarantula.webp",
+  "title": "Tarantula Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "The most violent star factory in our galactic neighborhood — 161,000 light-years away, home to the most massive stars known.",
+  "w": 1600,
+  "h": 925
+ },
+ {
+  "file": "assets/gallery/cartwheel.webp",
+  "title": "Cartwheel Galaxy",
+  "tag": "galaxy",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "The aftermath of a bullseye: a smaller galaxy punched through this one 400 million years ago, sending rings of star birth outward like ripples.",
+  "w": 1600,
+  "h": 1473
+ },
+ {
+  "file": "assets/gallery/eagle-pillars.webp",
+  "title": "Pillars of Creation (1995–2015)",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "Hubble’s 2015 return to the Eagle Nebula’s pillars — the image that defined a generation of astronomy.",
+  "w": 1600,
+  "h": 1669
+ },
+ {
+  "file": "assets/gallery/veil.webp",
+  "title": "Veil Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "Shrapnel from a star that exploded 8,000 years ago, still expanding — a supernova remnant 110 light-years across.",
+  "w": 1600,
+  "h": 1199
+ },
+ {
+  "file": "assets/gallery/whirlpool.webp",
+  "title": "Whirlpool Galaxy",
+  "tag": "galaxy",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "M51 and its small companion: the textbook spiral galaxy, its arms compressed into star-forming brilliance by the encounter.",
+  "w": 1600,
+  "h": 1110
+ },
+ {
+  "file": "assets/gallery/butterfly.webp",
+  "title": "Butterfly Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "Wings of gas heated to 20,000 degrees, flowing from a dying star at a million kilometers per hour.",
+  "w": 1600,
+  "h": 1865
+ },
+ {
+  "file": "assets/gallery/ultra-deep.webp",
+  "title": "Hubble Ultra Deep Field",
+  "tag": "deep",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "Hubble stared at one dark speck of sky for weeks and found 10,000 galaxies — some of their light older than the Earth itself.",
+  "w": 1600,
+  "h": 1461
+ },
+ {
+  "file": "assets/gallery/sombrero.webp",
+  "title": "Sombrero Galaxy",
+  "tag": "galaxy",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "A galaxy seen edge-on, its dust lane and glowing bulge forming the brim and crown that give M104 its name.",
+  "w": 1181,
+  "h": 1476
+ },
+ {
+  "file": "assets/gallery/orion.webp",
+  "title": "Orion Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "The nearest great star factory to Earth — visible to your naked eye as the middle “star” in Orion’s sword.",
+  "w": 1280,
+  "h": 1280
+ }
+]
