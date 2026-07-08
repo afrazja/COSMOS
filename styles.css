@@ -1555,6 +1555,7 @@ body.no-pin .ship-shadow { opacity: 0.55; }
 .shot:focus-visible figcaption { opacity: 1; translate: 0 0; }
 
 /* --- lightbox --- */
+.lightbox[hidden] { display: none; } /* keep display:grid from defeating the hidden attribute */
 .lightbox {
   position: fixed;
   inset: 0;
