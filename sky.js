@@ -38,13 +38,31 @@
         link.href = d.hdurl || d.url;
         link.hidden = false;
       } else if (d.media_type === 'video') {
-        // show the thumbnail; the button opens the video itself
         apodMedia.innerHTML = '';
-        if (d.thumbnail_url) {
+        if (/\.(mp4|webm|mov)(\?|$)/i.test(d.url || '')) {
+          // direct video file — play it right in the panel
+          const v = document.createElement('video');
+          v.src = d.url;
+          v.controls = true;
+          v.muted = true;
+          v.loop = true;
+          v.autoplay = true;
+          v.playsInline = true;
+          apodMedia.appendChild(v);
+        } else if (d.thumbnail_url) {
+          // hosted video (YouTube etc.) with a thumbnail available
           const img = document.createElement('img');
           img.src = d.thumbnail_url;
           img.alt = d.title || 'Video thumbnail';
           apodMedia.appendChild(img);
+        } else {
+          // hosted video, no thumbnail — embed the player
+          const f = document.createElement('iframe');
+          f.src = d.url;
+          f.title = d.title || 'NASA Astronomy Picture of the Day video';
+          f.allowFullscreen = true;
+          f.loading = 'lazy';
+          apodMedia.appendChild(f);
         }
         link.textContent = 'Watch the video ↗';
         link.href = d.url;
