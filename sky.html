@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tonight's Sky — COSMOS</title>
+  <meta name="description" content="Live from space: NASA's picture of the day, the ISS position right now, and upcoming rocket launches." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-orb" aria-hidden="true"></span>
+      COSMOS
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#apod">Picture of the Day</a></li>
+      <li><a href="#iss">ISS Live</a></li>
+      <li><a href="#launches">Launches</a></li>
+    </ul>
+    <a href="index.html#explore" class="nav-cta">Begin Journey</a>
+  </nav>
+
+  <main class="sky-page">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="sky-hero">
+      <p class="eyebrow">Live from space</p>
+      <h1>Tonight's <em>sky</em></h1>
+      <p class="section-sub sky-hero-sub">
+        Not an archive — a window. Everything on this page is happening
+        <strong>right now</strong>: today's deep-space image, the station overhead,
+        and the next rockets leaving Earth.
+      </p>
+      <p class="sky-date" id="sky-date"></p>
+    </header>
+
+    <!-- ============ APOD ============ -->
+    <section class="section" id="apod">
+      <div class="section-head reveal">
+        <p class="eyebrow">01 — Astronomy Picture of the Day</p>
+        <h2>Today the universe <em>looks</em> like this</h2>
+        <p class="section-sub">
+          Every day since 1995, NASA has published one image of our universe with a
+          short explanation by a professional astronomer. This is today's.
+        </p>
+      </div>
+
+      <div class="apod-card reveal" id="apod-card">
+        <div class="apod-media" id="apod-media">
+          <p class="loading-pulse">Contacting NASA…</p>
+        </div>
+        <div class="apod-body">
+          <h3 id="apod-title">&nbsp;</h3>
+          <p class="apod-meta" id="apod-meta"></p>
+          <p class="apod-text" id="apod-text"></p>
+          <a class="btn btn-ghost apod-link" id="apod-link" href="#" target="_blank" rel="noopener" hidden>View full resolution ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ISS ============ -->
+    <section class="section" id="iss">
+      <div class="section-head reveal">
+        <p class="eyebrow">02 — International Space Station</p>
+        <h2>Someone is <em>up there</em> right now</h2>
+        <p class="section-sub">
+          The ISS circles Earth every 90 minutes at eight kilometers per second.
+          The red beacon on the globe is its position, live — drag to look around.
+        </p>
+      </div>
+
+      <div class="iss-wrap reveal">
+        <div class="iss-globe-stage">
+          <div id="iss-globe" role="img" aria-label="3D globe showing the live position of the International Space Station"></div>
+        </div>
+        <div class="iss-panel">
+          <ul class="facts iss-facts">
+            <li><strong id="iss-lat">—</strong><span>latitude</span></li>
+            <li><strong id="iss-lon">—</strong><span>longitude</span></li>
+            <li><strong id="iss-alt">—</strong><span>altitude</span></li>
+            <li><strong id="iss-vel">—</strong><span>speed</span></li>
+          </ul>
+          <p class="iss-note" id="iss-note">Acquiring signal…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LAUNCHES ============ -->
+    <section class="section" id="launches">
+      <div class="section-head reveal">
+        <p class="eyebrow">03 — Departures Board</p>
+        <h2>Next rockets <em>leaving</em> Earth</h2>
+        <p class="section-sub">
+          Upcoming launches from every agency and company on the planet,
+          with live countdowns. Data by The Space Devs.
+        </p>
+      </div>
+
+      <div class="launch-list reveal" id="launch-list">
+        <p class="loading-pulse">Checking the launch schedule…</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-orb" aria-hidden="true"></span>
+        COSMOS
+      </a>
+      <p class="footer-quote">"The cosmos is within us. We are made of star-stuff." — Carl Sagan</p>
+      <p class="footer-fine">Live data: NASA APOD · wheretheiss.at · The Space Devs · Imagery courtesy of NASA / ESA archives</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="sky.js"></script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="iss-globe.js"></script>
+</body>
+</html>
