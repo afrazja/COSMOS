@@ -1,0 +1,1135 @@
+/* ============================================================
+   COSMOS — space landing page
+   Palette: deep space ink, nebula violet/teal, ember orange
+   ============================================================ */
+
+:root {
+  --ink-0: #05060f;        /* deepest background */
+  --ink-1: #0a0c1c;        /* section background */
+  --ink-2: #12152b;        /* card background */
+  --text: #eef0ff;
+  --text-dim: #a8adce;
+  --violet: #a78bfa;
+  --teal: #5eead4;
+  --ember: #fb923c;
+  --glow-violet: rgba(167, 139, 250, 0.35);
+  --glow-teal: rgba(94, 234, 212, 0.25);
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --nav-h: 76px;
+  --radius: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink-0);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--violet); color: var(--ink-0); }
+
+img { max-width: 100%; display: block; }
+
+/* ---------- scroll progress bar ---------- */
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 60;
+  background: linear-gradient(90deg, var(--violet), var(--teal), var(--ember));
+  transform-origin: left;
+  transform: scaleX(0);
+  box-shadow: 0 0 12px var(--glow-violet);
+  pointer-events: none;
+}
+
+/* ---------- starfield canvas ---------- */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+main, footer, .hero, nav { position: relative; z-index: 1; }
+
+/* ---------- typography ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.6rem, 7.2vw, 5.4rem); font-weight: 800; }
+h2 { font-size: clamp(1.9rem, 4.4vw, 3.2rem); }
+h3 { font-size: clamp(1.25rem, 2.2vw, 1.7rem); }
+
+h1 em, h2 em {
+  font-style: normal;
+  background: linear-gradient(100deg, var(--violet) 10%, var(--teal) 55%, var(--ember) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.1rem;
+}
+.eyebrow.light { color: var(--teal); }
+
+.section-sub {
+  color: var(--text-dim);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  max-width: 46ch;
+  margin-top: 1.2rem;
+}
+
+/* ---------- reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in { opacity: 1; transform: none; }
+.delay-1 { transition-delay: 0.12s; }
+.delay-2 { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.2rem, 4vw, 3.2rem);
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(5, 6, 15, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: rgba(167, 139, 250, 0.12);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: 0.28em;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.logo-orb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #fff, var(--violet) 45%, #4c1d95 100%);
+  box-shadow: 0 0 14px var(--glow-violet), 0 0 34px var(--glow-violet);
+  animation: orb-pulse 3.5s ease-in-out infinite;
+}
+@keyframes orb-pulse {
+  0%, 100% { box-shadow: 0 0 12px var(--glow-violet), 0 0 30px var(--glow-violet); }
+  50%      { box-shadow: 0 0 20px var(--glow-violet), 0 0 52px var(--glow-violet); }
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(1.2rem, 3vw, 2.6rem);
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.25s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--violet), var(--teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-cta {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  background: rgba(167, 139, 250, 0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.nav-cta:hover {
+  background: rgba(167, 139, 250, 0.18);
+  box-shadow: 0 0 24px var(--glow-violet);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-h) + 3rem) clamp(1.2rem, 5vw, 4rem) 5.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -6%;
+  background: url('assets/hero.webp') center 38% / cover no-repeat;
+  will-change: translate, scale;
+  animation: hero-drift 34s ease-in-out infinite alternate;
+}
+/* animates `scale` only — JS drives `translate` for parallax, no conflict */
+@keyframes hero-drift {
+  from { scale: 1; }
+  to   { scale: 1.07; }
+}
+
+/* warp-speed starfield overlay (drawn by JS, sits over the nebula,
+   under the vignette + text) */
+#warp {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    /* dark scrim right behind the headline + subtitle so text stays readable
+       over the bright center of the nebula */
+    radial-gradient(ellipse 62% 46% at 50% 52%, rgba(5, 6, 15, 0.68), transparent 74%),
+    radial-gradient(ellipse 90% 70% at 50% 42%, transparent 30%, rgba(5, 6, 15, 0.55) 78%, var(--ink-0) 100%),
+    linear-gradient(to bottom, rgba(5, 6, 15, 0.55), transparent 26%, transparent 62%, var(--ink-0) 98%);
+}
+
+.hero-content { position: relative; max-width: 880px; }
+
+.hero-kicker {
+  font-size: 0.82rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.6rem;
+  text-shadow: 0 0 24px rgba(94, 234, 212, 0.5);
+}
+
+h1 .line { display: block; }
+
+.hero-sub {
+  margin: 1.8rem auto 0;
+  max-width: 56ch;
+  color: #e4e7f8;
+  font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+  text-shadow:
+    0 1px 4px rgba(5, 6, 15, 0.95),
+    0 2px 22px rgba(5, 6, 15, 0.9),
+    0 0 44px rgba(5, 6, 15, 0.8);
+}
+
+.hero-actions {
+  margin-top: 2.6rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* buttons */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 0.95rem 2.1rem;
+  border-radius: 999px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease;
+}
+.btn-primary {
+  color: #0b0716;
+  background: linear-gradient(100deg, #c4b5fd, var(--violet) 45%, #7dd3fc);
+  box-shadow: 0 0 28px var(--glow-violet), 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 44px var(--glow-violet), 0 14px 40px rgba(0, 0, 0, 0.5);
+}
+.btn-ghost {
+  color: var(--text);
+  border: 1px solid rgba(238, 240, 255, 0.28);
+  background: rgba(238, 240, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  background: rgba(238, 240, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* stats bar */
+.hero-stats {
+  position: relative;
+  margin-top: clamp(3rem, 7vh, 5.5rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  padding: 1.4rem clamp(1.4rem, 4vw, 3rem);
+  border-radius: var(--radius);
+  background: rgba(10, 12, 28, 0.55);
+  border: 1px solid rgba(167, 139, 250, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat { text-align: center; min-width: 150px; }
+.stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  background: linear-gradient(100deg, #fff, var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  max-width: 22ch;
+}
+.stat-divider {
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(to bottom, transparent, rgba(167, 139, 250, 0.4), transparent);
+}
+
+/* scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+.mouse {
+  display: block;
+  width: 26px; height: 42px;
+  border: 1.5px solid rgba(238, 240, 255, 0.5);
+  border-radius: 14px;
+  position: relative;
+}
+.wheel {
+  position: absolute;
+  top: 7px; left: 50%;
+  width: 3px; height: 8px;
+  margin-left: -1.5px;
+  border-radius: 3px;
+  background: var(--teal);
+  animation: wheel 1.8s ease-in-out infinite;
+}
+@keyframes wheel {
+  0%   { transform: translateY(0); opacity: 1; }
+  70%  { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+/* ============================================================
+   SECTIONS (shared)
+   ============================================================ */
+.section {
+  position: relative;
+  padding: clamp(5rem, 12vh, 9rem) clamp(1.2rem, 6vw, 5rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section-head { max-width: 720px; margin-bottom: clamp(2.8rem, 6vh, 4.5rem); }
+
+/* ============================================================
+   NEBULA CARDS
+   ============================================================ */
+.nebula-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+.nebula-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.nebula-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -2;
+}
+.nebula-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 6, 15, 0.92) 8%, rgba(5, 6, 15, 0.45) 45%, transparent 75%);
+  z-index: -1;
+}
+.nebula-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 40px var(--glow-violet);
+}
+.nebula-card:hover::before { transform: scale(1.06); }
+
+.nebula-card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(ellipse 70% 45% at 50% 100%, var(--glow-violet), transparent 70%);
+  transition: opacity 0.5s ease;
+}
+.nebula-card:hover .nebula-card-glow { opacity: 1; }
+
+/* fast transform response while the cursor drives the 3D tilt */
+.nebula-card.tilting {
+  transition: transform 0.09s linear, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+/* cursor-following light glare on tilted cards */
+.nebula-card .glare {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 320px at var(--gx, 50%) var(--gy, 50%),
+    rgba(238, 240, 255, 0.16),
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+}
+.nebula-card:hover .glare { opacity: 1; }
+
+.nebula-card-body { padding: 1.8rem 1.7rem; position: relative; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 0.32rem 0.85rem;
+  border: 1px solid rgba(94, 234, 212, 0.35);
+  border-radius: 999px;
+  background: rgba(94, 234, 212, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  margin-bottom: 0.9rem;
+}
+
+.nebula-card h3 { margin-bottom: 0.6rem; }
+.nebula-card p { color: #c8cce8; font-size: 0.95rem; }
+
+.nebula-meta {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+/* ============================================================
+   PLANETS
+   ============================================================ */
+/* --- pinned scroll journey: the stage stays on screen while
+       scroll progress drives planets across it --- */
+.planets-pin {
+  position: relative;
+  /* 4 planets × 160vh of scroll each */
+  height: 640vh;
+}
+.planets-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.stage-head {
+  position: absolute;
+  top: calc(var(--nav-h) + 2.5vh);
+  left: clamp(1.2rem, 6vw, 5rem);
+  z-index: 6;
+}
+.stage-head h2 { font-size: clamp(1.5rem, 3vw, 2.3rem); }
+
+.planet-slide {
+  position: absolute;
+  inset: 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 9vh) clamp(1.2rem, 6vw, 5rem) 5vh;
+  display: grid;
+  grid-template-columns: minmax(260px, 5fr) 6fr;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.planet-slide.live { visibility: visible; pointer-events: auto; }
+.planet-slide .planet-visual,
+.planet-slide .planet-info { will-change: translate, scale, opacity; }
+
+.planet-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.planet-visual img {
+  width: min(38vw, 52vh);
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7));
+  animation: float 9s ease-in-out infinite;
+}
+
+/* progress dots — one per planet */
+.planet-dots {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.4rem);
+  top: 50%;
+  translate: 0 -50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  z-index: 7;
+}
+.planet-dots button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(238, 240, 255, 0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, scale 0.3s ease;
+}
+.planet-dots button:hover { scale: 1.35; }
+.planet-dots button.on {
+  background: var(--teal);
+  border-color: var(--teal);
+  box-shadow: 0 0 12px var(--glow-teal), 0 0 26px var(--glow-teal);
+}
+
+.stage-hint {
+  position: absolute;
+  bottom: 3vh;
+  left: 50%;
+  translate: -50% 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: opacity 0.6s ease;
+  white-space: nowrap;
+}
+
+/* fallback: reduced motion gets a plain stacked layout, no pinning */
+body.no-pin .planets-pin { height: auto; }
+body.no-pin .planets-stage { position: static; height: auto; overflow: visible; }
+body.no-pin .stage-head { position: static; padding: 5rem clamp(1.2rem, 6vw, 5rem) 0; }
+body.no-pin .planet-slide {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  padding: 4rem clamp(1.2rem, 6vw, 5rem);
+}
+body.no-pin .planet-dots,
+body.no-pin .stage-hint { display: none; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0.001deg); }
+  50%      { transform: translateY(-18px) rotate(0.001deg); }
+}
+
+.planet-halo {
+  position: absolute;
+  width: 74%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--halo, #a78bfa) 0%, transparent 62%);
+  opacity: 0.28;
+  filter: blur(46px);
+  animation: halo-breathe 9s ease-in-out infinite;
+}
+@keyframes halo-breathe {
+  0%, 100% { opacity: 0.22; transform: scale(1); }
+  50%      { opacity: 0.38; transform: scale(1.1); }
+}
+
+.planet-index {
+  font-size: 0.76rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 0.9rem;
+}
+
+.planet-info h3 {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+.planet-info > p { color: var(--text-dim); max-width: 54ch; }
+
+.facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.7rem;
+}
+.facts li {
+  padding: 0.85rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(18, 21, 43, 0.75);
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  min-width: 130px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.facts li:hover { border-color: rgba(94, 234, 212, 0.45); transform: translateY(-3px); }
+.facts strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--text);
+}
+.facts span {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-dim);
+  margin-top: 0.2rem;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   MOON
+   ============================================================ */
+.moon-section { max-width: none; padding-left: 0; padding-right: 0; overflow: hidden; }
+
+.moon-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.2rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.moon-visual { position: relative; }
+.moon-visual img {
+  width: min(100%, 560px);
+  animation: moon-spin 240s linear infinite;
+  filter: drop-shadow(0 0 80px rgba(200, 210, 255, 0.18));
+}
+@keyframes moon-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.moon-facts { flex-direction: column; align-items: flex-start; }
+.moon-facts li { width: 100%; max-width: 360px; }
+
+/* ============================================================
+   3D EARTH
+   ============================================================ */
+.earth-section {
+  position: relative;
+  text-align: center;
+  overflow: visible;
+}
+.section-head.center { margin-left: auto; margin-right: auto; }
+.earth-section .section-sub { margin-left: auto; margin-right: auto; }
+
+/* drifting aurora glow blobs (motion graphics backdrop) */
+.aurora {
+  position: absolute;
+  width: 46vw;
+  max-width: 640px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: -1;
+}
+.aurora-a {
+  top: 4%; left: -12%;
+  background: radial-gradient(circle, var(--violet), transparent 65%);
+  animation: aurora-drift-a 26s ease-in-out infinite alternate;
+}
+.aurora-b {
+  bottom: 2%; right: -14%;
+  background: radial-gradient(circle, var(--teal), transparent 65%);
+  animation: aurora-drift-b 32s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift-a {
+  from { translate: 0 0; scale: 1; }
+  to   { translate: 9vw 6vh; scale: 1.25; }
+}
+@keyframes aurora-drift-b {
+  from { translate: 0 0; scale: 1.2; }
+  to   { translate: -8vw -7vh; scale: 0.95; }
+}
+
+.globe-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  width: min(88vw, 560px);
+}
+
+#globe {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+}
+#globe:active { cursor: grabbing; }
+#globe canvas { max-width: 100%; height: auto !important; }
+
+/* decorative orbit ring around the globe */
+.globe-ring {
+  position: absolute;
+  inset: -7%;
+  border-radius: 50%;
+  border: 1px dashed rgba(167, 139, 250, 0.28);
+  animation: ring-spin 60s linear infinite;
+  pointer-events: none;
+}
+.globe-ring::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: -4px;
+  width: 9px; height: 9px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 12px var(--glow-teal), 0 0 26px var(--glow-teal);
+}
+@keyframes ring-spin {
+  from { rotate: 0deg; }
+  to   { rotate: 360deg; }
+}
+
+.globe-hint {
+  position: absolute;
+  bottom: -0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.drag-icon { color: var(--teal); margin-right: 0.4rem; }
+
+.globe-facts {
+  justify-content: center;
+  margin-top: 3.2rem;
+}
+
+/* ============================================================
+   SPACESHIP LANDING — pinned scroll motion graphic
+   ============================================================ */
+.landing-pin {
+  position: relative;
+  height: 320vh; /* scroll distance of the descent + a hold after touchdown */
+}
+.landing-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  /* real Martian surface (NASA/JPL-Caltech, Perseverance rover) with
+     dark blends top + bottom so the section melts into the space theme */
+  background:
+    linear-gradient(to bottom, rgba(5, 6, 15, 0.78), rgba(5, 6, 15, 0.28) 16%, transparent 34%),
+    linear-gradient(to top, rgba(5, 6, 15, 0.82), transparent 22%),
+    url('assets/mars-ground.jpg') center bottom / cover no-repeat;
+}
+
+/* readable headings over the bright Martian sky */
+.landing-stage .stage-head h2,
+.landing-stage .stage-head .eyebrow {
+  text-shadow: 0 2px 18px rgba(5, 6, 15, 0.9), 0 0 40px rgba(5, 6, 15, 0.6);
+}
+
+/* scroll-scrubbed landing video */
+#landing-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.landing-stage.video-mode #landing-video { opacity: 1; }
+
+/* dark blends live above the video so the section still melts into the theme */
+.landing-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+  background:
+    linear-gradient(to bottom, rgba(5, 6, 15, 0.78), rgba(5, 6, 15, 0.28) 16%, transparent 34%),
+    linear-gradient(to top, rgba(5, 6, 15, 0.82), transparent 22%);
+}
+.landing-stage.video-mode .landing-fade { display: block; }
+
+/* video replaces the composited layers when it loads */
+.landing-stage.video-mode .lander,
+.landing-stage.video-mode .ship-shadow,
+.landing-stage.video-mode .dust { display: none; }
+body.no-pin #landing-video,
+body.no-pin .landing-fade { display: none; }
+
+/* mission HUD */
+.hud {
+  position: absolute;
+  top: calc(var(--nav-h) + 3vh);
+  right: clamp(1.2rem, 5vw, 4rem);
+  z-index: 8;
+  text-align: right;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  color: var(--teal);
+  text-shadow: 0 0 14px rgba(94, 234, 212, 0.45);
+  /* glass chip so telemetry stays readable over the bright sky */
+  background: rgba(5, 6, 15, 0.55);
+  border: 1px solid rgba(94, 234, 212, 0.22);
+  border-radius: 14px;
+  padding: 0.85rem 1.15rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.hud-line {
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  letter-spacing: 0.14em;
+}
+.hud-status {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--ember);
+  text-shadow: 0 0 14px rgba(251, 146, 60, 0.45);
+  transition: color 0.4s ease;
+}
+.hud-status.ok {
+  color: #4ade80;
+  text-shadow: 0 0 16px rgba(74, 222, 128, 0.55);
+}
+
+/* the lander — JS drives translate/rotate down to the pad.
+   Sized smaller so it reads as landing in the middle distance
+   of the real photograph, above the foreground boulders. */
+.lander {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(200px, 24vw, 360px);
+  z-index: 3;
+  will-change: transform;
+  filter: drop-shadow(0 14px 26px rgba(30, 10, 4, 0.55));
+}
+
+/* soft contact shadow on the regolith, driven by descent progress */
+.ship-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 16vh;
+  translate: -50% 50%;
+  width: clamp(230px, 26vw, 420px);
+  aspect-ratio: 3.2 / 1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(25, 8, 3, 0.7), rgba(25, 8, 3, 0.25) 55%, transparent 72%);
+  filter: blur(7px);
+  opacity: 0;
+  z-index: 2;
+  will-change: transform, opacity;
+}
+.lander-img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1; /* ship hull sits over the plume tops */
+}
+.flame-svg {
+  position: absolute;
+  top: 84%;      /* aligned with the cutout's engine bells */
+  left: 31%;
+  width: 38%;
+  overflow: visible;
+  z-index: 0;
+}
+
+/* flame: outer group scaled by JS (thrust), inner group flickers */
+.flame {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 0 10px rgba(255, 190, 92, 0.75));
+  transition: opacity 0.3s ease; /* clean engine cutoff at touchdown */
+}
+.flame-flick {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: flame-flick 0.14s ease-in-out infinite alternate;
+}
+@keyframes flame-flick {
+  from { transform: scaleY(0.82) scaleX(0.94); }
+  to   { transform: scaleY(1.12) scaleX(1.05); }
+}
+
+/* touchdown dust */
+.dust {
+  position: absolute;
+  bottom: 17vh; /* at the ship's touchdown line on the photo's mid-plain */
+  width: clamp(190px, 23vw, 360px);
+  aspect-ratio: 2 / 1;
+  border-radius: 50%;
+  /* tan dust sampled from the real Martian soil in the photo */
+  background: radial-gradient(ellipse at center, rgba(206, 148, 104, 0.6), rgba(166, 106, 66, 0.22) 55%, transparent 75%);
+  filter: blur(9px);
+  opacity: 0;
+  z-index: 4;
+  will-change: transform, opacity;
+}
+.dust-l { left: calc(50% - 60px); translate: -100% 0; }
+.dust-r { right: calc(50% - 60px); translate: 100% 0; }
+
+/* post-landing message */
+.landed-msg {
+  position: absolute;
+  left: 50%;
+  bottom: 6vh;
+  translate: -50% 0;
+  z-index: 6;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2.4vw, 1.7rem);
+  opacity: 0;
+  width: min(92vw, 640px);
+  text-shadow: 0 2px 16px rgba(5, 6, 15, 0.95), 0 0 36px rgba(5, 6, 15, 0.7);
+}
+.landed-msg span {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* reduced motion: show the ship already landed, no pinning */
+body.no-pin .landing-pin { height: auto; }
+body.no-pin .landing-stage { position: relative; height: 88vh; }
+body.no-pin .lander {
+  top: auto;
+  bottom: 17vh;
+  transform: translateX(-50%);
+}
+body.no-pin .flame { display: none; }
+body.no-pin .hud { display: none; }
+body.no-pin .landed-msg { opacity: 1; }
+body.no-pin .ship-shadow { opacity: 0.55; }
+
+/* ============================================================
+   EXPLORE / ASTRONAUT
+   ============================================================ */
+.explore {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  align-items: center;
+  padding: clamp(5rem, 12vh, 8rem) clamp(1.2rem, 6vw, 5rem);
+  overflow: hidden;
+}
+
+.explore-bg {
+  position: absolute;
+  inset: 0;
+  background: url('assets/astronaut.webp') center 30% / cover no-repeat fixed;
+}
+@supports (-webkit-touch-callout: none) {
+  /* iOS ignores fixed backgrounds gracefully */
+  .explore-bg { background-attachment: scroll; }
+}
+
+.explore-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(5, 6, 15, 0.9) 22%, rgba(5, 6, 15, 0.55) 52%, rgba(5, 6, 15, 0.18) 80%),
+    linear-gradient(to bottom, var(--ink-0), transparent 18%, transparent 82%, var(--ink-0));
+}
+
+.explore-content {
+  position: relative;
+  max-width: 560px;
+}
+.explore-content h2 { margin-bottom: 1.4rem; }
+.explore-content p {
+  color: #ccd1ee;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  margin-bottom: 2.4rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 1px solid rgba(167, 139, 250, 0.12);
+  background: linear-gradient(to bottom, transparent, rgba(10, 12, 28, 0.8));
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3.5rem clamp(1.2rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: center;
+}
+.footer-quote {
+  color: var(--text-dim);
+  font-size: 0.98rem;
+  font-style: italic;
+  max-width: 52ch;
+}
+.footer-fine {
+  color: #5a5f85;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+
+  .planet-slide {
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-content: center;
+    gap: 1.4rem;
+    padding-top: calc(var(--nav-h) + 11vh);
+  }
+  .planet-visual img { width: min(52vw, 30vh); }
+  .planet-info > p { margin: 0 auto; max-width: 60ch; font-size: 0.95rem; }
+  .facts { justify-content: center; gap: 0.6rem; margin-top: 1.1rem; }
+  .facts li { padding: 0.6rem 0.9rem; min-width: 110px; }
+  .stage-head { width: 100%; left: 0; text-align: center; }
+  .planet-dots { right: 0.8rem; }
+
+  .moon-wrap { grid-template-columns: 1fr; text-align: center; }
+  .moon-visual img { margin: 0 auto; width: min(70vw, 420px); }
+  .moon-facts { align-items: center; }
+  .section-sub { margin-left: auto; margin-right: auto; }
+
+  .explore-content { max-width: none; text-align: center; }
+  .explore-overlay {
+    background:
+      rgba(5, 6, 15, 0.62);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-stats { gap: 1.2rem; padding: 1.2rem; }
+  .stat-divider { display: none; }
+  .stat { min-width: 120px; }
+  .nebula-card { min-height: 420px; }
+  .scroll-hint { display: none; }
+}

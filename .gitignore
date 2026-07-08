@@ -1,0 +1,8 @@
+.vercel
+.env*
+
+# local-only originals and working files (the site uses assets/*.webp)
+/*.png
+/*.mp4
+assets/*.png
+assets/landing-scrub.mp4

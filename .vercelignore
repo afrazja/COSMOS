@@ -1,0 +1,9 @@
+# local-only files — not needed by the deployed site
+/*.png
+/*.mp4
+local-server.js
+Start COSMOS.bat
+
+# original/unused assets (site uses the .webp versions)
+assets/*.png
+assets/landing-scrub.mp4

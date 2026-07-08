@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COSMOS — Journey Through the Universe</title>
+  <meta name="description" content="An immersive journey through nebulae, planets and the story of human space exploration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Scroll progress bar -->
+  <div id="progress" aria-hidden="true"></div>
+
+  <!-- Twinkling starfield behind everything -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <a class="logo" href="#top">
+      <span class="logo-orb" aria-hidden="true"></span>
+      COSMOS
+    </a>
+    <ul class="nav-links">
+      <li><a href="#nebulae">Nebulae</a></li>
+      <li><a href="#planets">Planets</a></li>
+      <li><a href="#moon">The Moon</a></li>
+      <li><a href="#earth">3D Earth</a></li>
+      <li><a href="#landing">Landing</a></li>
+      <li><a href="#explore">Explore</a></li>
+    </ul>
+    <a href="#explore" class="nav-cta">Begin Journey</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <canvas id="warp" aria-hidden="true"></canvas>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-content reveal">
+      <p class="hero-kicker">✦ &nbsp;13.8 billion years in the making</p>
+      <h1>
+        <span class="line">The universe</span>
+        <span class="line">is <em>calling</em>.</span>
+      </h1>
+      <p class="hero-sub">
+        From stellar nurseries where suns ignite, to ice giants adrift in eternal
+        night — explore the cosmos as you've never seen it before.
+      </p>
+      <div class="hero-actions">
+        <a href="#nebulae" class="btn btn-primary">Start Exploring</a>
+        <a href="#planets" class="btn btn-ghost">Meet the Planets</a>
+      </div>
+    </div>
+
+    <div class="hero-stats reveal">
+      <div class="stat">
+        <span class="stat-num" data-count="2" data-suffix=" trillion">0</span>
+        <span class="stat-label">galaxies in the observable universe</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat">
+        <span class="stat-num" data-count="93" data-suffix=" billion ly">0</span>
+        <span class="stat-label">across the observable universe</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat">
+        <span class="stat-num" data-count="100" data-suffix=" billion+">0</span>
+        <span class="stat-label">stars in the Milky Way alone</span>
+      </div>
+    </div>
+
+    <a href="#nebulae" class="scroll-hint" aria-label="Scroll down">
+      <span class="mouse"><span class="wheel"></span></span>
+    </a>
+  </header>
+
+  <main>
+    <!-- ============ NEBULAE ============ -->
+    <section class="section" id="nebulae">
+      <div class="section-head reveal">
+        <p class="eyebrow">01 — Stellar Nurseries</p>
+        <h2>Where stars are <em>born</em></h2>
+        <p class="section-sub">
+          Nebulae are vast clouds of gas and dust, light-years across. Gravity slowly
+          pulls their matter together until — under crushing pressure — new stars ignite.
+        </p>
+      </div>
+
+      <div class="nebula-grid">
+        <article class="nebula-card reveal" style="--img: url('assets/nebula-1.webp')">
+          <div class="nebula-card-glow" aria-hidden="true"></div>
+          <div class="nebula-card-body">
+            <span class="tag">Emission Nebula</span>
+            <h3>The Violet Reach</h3>
+            <p>
+              Ionized hydrogen glows as newborn stars flood the cloud with ultraviolet
+              radiation — painting it in purples and teals visible across thousands of light-years.
+            </p>
+            <span class="nebula-meta">≈ 7,000 ly away · 50 ly across</span>
+          </div>
+        </article>
+
+        <article class="nebula-card reveal delay-1" style="--img: url('assets/nebula-2.webp')">
+          <div class="nebula-card-glow" aria-hidden="true"></div>
+          <div class="nebula-card-body">
+            <span class="tag">Star-Forming Region</span>
+            <h3>The Ember Fields</h3>
+            <p>
+              Turquoise oxygen and burning orange sulfur swirl together here. Inside these
+              folds, hundreds of protostars are collapsing toward ignition right now.
+            </p>
+            <span class="nebula-meta">≈ 4,300 ly away · 120 ly across</span>
+          </div>
+        </article>
+
+        <article class="nebula-card reveal delay-2" style="--img: url('assets/nebula-3.webp')">
+          <div class="nebula-card-glow" aria-hidden="true"></div>
+          <div class="nebula-card-body">
+            <span class="tag">Supernova Remnant</span>
+            <h3>The Last Light</h3>
+            <p>
+              When a massive star dies, it seeds space with the elements of life. The calcium
+              in your bones and the iron in your blood were forged in explosions like this.
+            </p>
+            <span class="nebula-meta">≈ 6,500 ly away · expanding at 1,500 km/s</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PLANETS — pinned scroll journey ============ -->
+    <section class="planets-pin" id="planets">
+      <div class="planets-stage">
+        <div class="aurora aurora-a" aria-hidden="true"></div>
+        <div class="aurora aurora-b" aria-hidden="true"></div>
+
+        <div class="stage-head">
+          <p class="eyebrow">02 — The Solar System</p>
+          <h2>Worlds next <em>door</em></h2>
+        </div>
+
+        <!-- Jupiter -->
+        <article class="planet-slide">
+          <div class="planet-visual">
+            <div class="planet-halo" style="--halo:#c98a5b" aria-hidden="true"></div>
+            <img src="assets/jupiter.webp" alt="Jupiter, with its swirling cloud bands and Great Red Spot" />
+          </div>
+          <div class="planet-info">
+            <p class="planet-index">05 · Gas Giant</p>
+            <h3>Jupiter</h3>
+            <p>
+              The king of planets — so massive that every other planet in the solar system
+              could fit inside it twice over. Its Great Red Spot is a storm wider than Earth
+              that has raged for at least 350 years.
+            </p>
+            <ul class="facts">
+              <li><strong>139,820 km</strong><span>diameter</span></li>
+              <li><strong>95</strong><span>known moons</span></li>
+              <li><strong>9.9 hrs</strong><span>length of a day</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Saturn -->
+        <article class="planet-slide">
+          <div class="planet-visual">
+            <div class="planet-halo" style="--halo:#d9c9a3" aria-hidden="true"></div>
+            <img src="assets/saturn.webp" alt="Saturn and its magnificent ring system" />
+          </div>
+          <div class="planet-info">
+            <p class="planet-index">06 · Gas Giant</p>
+            <h3>Saturn</h3>
+            <p>
+              The jewel of the solar system. Its rings span 282,000 km yet are, in places,
+              only ten meters thick — countless shards of ice and rock in a razor-thin dance.
+              Saturn is so light it would float in water.
+            </p>
+            <ul class="facts">
+              <li><strong>282,000 km</strong><span>ring span</span></li>
+              <li><strong>146</strong><span>known moons</span></li>
+              <li><strong>0.69 g/cm³</strong><span>density — less than water</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Mars -->
+        <article class="planet-slide">
+          <div class="planet-visual">
+            <div class="planet-halo" style="--halo:#d1603d" aria-hidden="true"></div>
+            <img src="assets/mars.webp" alt="Mars, the red planet, showing Valles Marineris" />
+          </div>
+          <div class="planet-info">
+            <p class="planet-index">04 · Terrestrial</p>
+            <h3>Mars</h3>
+            <p>
+              The next world humans will walk on. Home to Olympus Mons — a volcano three times
+              the height of Everest — and Valles Marineris, a canyon that would stretch from
+              New York to Los Angeles.
+            </p>
+            <ul class="facts">
+              <li><strong>21.9 km</strong><span>height of Olympus Mons</span></li>
+              <li><strong>2</strong><span>moons — Phobos &amp; Deimos</span></li>
+              <li><strong>24.6 hrs</strong><span>length of a day</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Neptune -->
+        <article class="planet-slide">
+          <div class="planet-visual">
+            <div class="planet-halo" style="--halo:#3f6ad8" aria-hidden="true"></div>
+            <img src="assets/neptune.webp" alt="Neptune, the deep blue ice giant" />
+          </div>
+          <div class="planet-info">
+            <p class="planet-index">08 · Ice Giant</p>
+            <h3>Neptune</h3>
+            <p>
+              The farthest planet from the Sun, discovered with mathematics before it was ever
+              seen through a telescope. Its winds reach 2,100 km/h — the fastest in the solar
+              system — screaming through air of hydrogen, helium and methane.
+            </p>
+            <ul class="facts">
+              <li><strong>2,100 km/h</strong><span>fastest winds recorded</span></li>
+              <li><strong>165 yrs</strong><span>one orbit of the Sun</span></li>
+              <li><strong>−214 °C</strong><span>average temperature</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="planet-dots" aria-label="Jump to planet">
+          <button type="button" aria-label="Jupiter"></button>
+          <button type="button" aria-label="Saturn"></button>
+          <button type="button" aria-label="Mars"></button>
+          <button type="button" aria-label="Neptune"></button>
+        </div>
+
+        <p class="stage-hint">keep scrolling — the journey continues ↓</p>
+      </div>
+    </section>
+
+    <!-- ============ MOON ============ -->
+    <section class="section moon-section" id="moon">
+      <div class="moon-wrap">
+        <div class="moon-visual reveal" aria-hidden="true">
+          <img src="assets/moon.webp" alt="" loading="lazy" />
+        </div>
+        <div class="moon-info reveal">
+          <p class="eyebrow">03 — Our Closest Neighbor</p>
+          <h2>One moon, <em>every</em> tide</h2>
+          <p class="section-sub">
+            Born 4.5 billion years ago when a Mars-sized world collided with the young Earth,
+            the Moon steadies our planet's tilt, drives the tides, and gave every civilization
+            in history its first calendar.
+          </p>
+          <ul class="facts moon-facts">
+            <li><strong>384,400 km</strong><span>average distance from Earth</span></li>
+            <li><strong>12</strong><span>humans have walked its surface</span></li>
+            <li><strong>3.8 cm/yr</strong><span>it drifts away from us</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3D EARTH ============ -->
+    <section class="section earth-section" id="earth">
+      <div class="aurora aurora-a" aria-hidden="true"></div>
+      <div class="aurora aurora-b" aria-hidden="true"></div>
+      <div class="section-head reveal center">
+        <p class="eyebrow">04 — Interactive</p>
+        <h2>Hold a <em>world</em> in your hands</h2>
+        <p class="section-sub">
+          This is Earth — rendered live in 3D, right in your browser.
+          Drag to spin it. Every human who has ever lived, lived here.
+        </p>
+      </div>
+
+      <div class="globe-stage reveal">
+        <div class="globe-ring" aria-hidden="true"></div>
+        <div id="globe" role="img" aria-label="Interactive rotating 3D model of Earth"></div>
+        <p class="globe-hint"><span class="drag-icon" aria-hidden="true">⟲</span> drag to rotate</p>
+      </div>
+
+      <ul class="facts globe-facts reveal">
+        <li><strong>29.2%</strong><span>of the surface is land</span></li>
+        <li><strong>1 sun, 1 moon</strong><span>and 8.7 million species</span></li>
+        <li><strong>107,000 km/h</strong><span>our speed around the Sun</span></li>
+      </ul>
+    </section>
+
+    <!-- ============ SPACESHIP LANDING — pinned motion graphic ============ -->
+    <section class="landing-pin" id="landing">
+      <div class="landing-stage">
+        <!-- scroll-scrubbed landing footage; the composited scene below
+             stays as an automatic fallback if the video can't load -->
+        <video id="landing-video" src="assets/landing2-scrub.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+        <div class="landing-fade" aria-hidden="true"></div>
+
+        <div class="stage-head">
+          <p class="eyebrow">05 — Final Descent</p>
+          <h2>Touchdown on <em>Mars</em></h2>
+        </div>
+
+        <!-- mission-control HUD, driven by scroll -->
+        <div class="hud" aria-hidden="true">
+          <p class="hud-line">ALT&nbsp;&nbsp;<span id="hud-alt">2400</span> m</p>
+          <p class="hud-line">VEL&nbsp;&nbsp;<span id="hud-vel">−46</span> m/s</p>
+          <p class="hud-status" id="hud-status">— DESCENT PHASE —</p>
+        </div>
+
+        <!-- ground shadow that deepens as the ship gets close -->
+        <div class="ship-shadow" id="ship-shadow" aria-hidden="true"></div>
+
+        <!-- the lander: real cutout, flame plumes tucked under its engine bells -->
+        <div class="lander" id="lander" aria-hidden="true">
+          <svg class="flame-svg" viewBox="0 0 120 110" aria-hidden="true">
+            <defs>
+              <linearGradient id="flameOuter" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffd166"/>
+                <stop offset="1" stop-color="rgba(251,146,60,0)"/>
+              </linearGradient>
+              <linearGradient id="flameInner" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset="1" stop-color="rgba(125,211,252,0)"/>
+              </linearGradient>
+            </defs>
+            <g class="flame" id="flame">
+              <g class="flame-flick">
+                <path d="M6 0 Q20 72 34 0 Q20 16 6 0 Z" fill="url(#flameOuter)"/>
+                <path d="M13 0 Q20 46 27 0 Q20 12 13 0 Z" fill="url(#flameInner)"/>
+                <path d="M44 0 Q60 92 76 0 Q60 20 44 0 Z" fill="url(#flameOuter)"/>
+                <path d="M52 0 Q60 58 68 0 Q60 14 52 0 Z" fill="url(#flameInner)"/>
+                <path d="M86 0 Q100 72 114 0 Q100 16 86 0 Z" fill="url(#flameOuter)"/>
+                <path d="M93 0 Q100 46 107 0 Q100 12 93 0 Z" fill="url(#flameInner)"/>
+              </g>
+            </g>
+          </svg>
+          <img class="lander-img" src="assets/lander.webp" alt="" />
+        </div>
+
+        <!-- touchdown dust -->
+        <div class="dust dust-l" id="dust-l" aria-hidden="true"></div>
+        <div class="dust dust-r" id="dust-r" aria-hidden="true"></div>
+
+        <p class="landed-msg" id="landed-msg">
+          Contact light. Engine stop.
+          <span>Humanity's next home — one landing at a time.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ EXPLORE / ASTRONAUT ============ -->
+    <section class="explore" id="explore">
+      <div class="explore-bg" aria-hidden="true"></div>
+      <div class="explore-overlay" aria-hidden="true"></div>
+      <div class="explore-content reveal">
+        <p class="eyebrow light">06 — The Human Chapter</p>
+        <h2>We were <em>made</em> to go</h2>
+        <p>
+          Six hundred people have crossed the boundary of space. Footprints wait on the Moon,
+          robots roam Mars, and a probe launched in 1977 is still whispering back to us from
+          interstellar space. The next chapter is being written now — and it includes you.
+        </p>
+        <a href="#top" class="btn btn-primary">Look Up Again</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="#top">
+        <span class="logo-orb" aria-hidden="true"></span>
+        COSMOS
+      </a>
+      <p class="footer-quote">"The cosmos is within us. We are made of star-stuff." — Carl Sagan</p>
+      <p class="footer-fine">Imagery courtesy of NASA / ESA archives · Built for the endlessly curious</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Three.js for the interactive 3D Earth -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="earth.js"></script>
+</body>
+</html>
