@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Journey — COSMOS</title>
+  <meta name="description" content="Seven decades of space exploration — from Sputnik's first beep to the missions that haven't flown yet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-orb" aria-hidden="true"></span>
+      COSMOS
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#race">The Race</a></li>
+      <li><a href="#explorers">The Explorers</a></li>
+      <li><a href="#newage">The New Age</a></li>
+      <li><a href="sky.html" class="nav-live">Tonight's Sky<span class="live-dot" aria-hidden="true"></span></a></li>
+    </ul>
+    <a href="index.html#explore" class="nav-cta">Begin Journey</a>
+  </nav>
+
+  <main class="sky-page">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="sky-hero">
+      <p class="eyebrow">1957 — Tomorrow</p>
+      <h1>The <em>journey</em> so far</h1>
+      <p class="section-sub sky-hero-sub">
+        Sixty-eight years ago, the loudest thing humanity had ever put in the sky
+        was a beeping metal sphere the size of a beach ball. This is what happened next.
+      </p>
+    </header>
+
+    <!-- ============ TIMELINE ============ -->
+    <section class="section timeline-section">
+      <div class="timeline" id="timeline">
+        <div class="timeline-track" aria-hidden="true"><div class="timeline-fill" id="timeline-fill"></div></div>
+
+        <!-- ERA I -->
+        <div class="era reveal" id="race"><span>Era I — The Race</span></div>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1957</span>
+            <h3>Sputnik 1</h3>
+            <p>
+              A polished 58-centimeter sphere with four antennas becomes the first
+              artificial satellite. Its steady radio beep — audible to amateur operators
+              around the world — announces the Space Age to everyone with a receiver.
+            </p>
+            <span class="milestone-fact">83.6 kg · orbited Earth ~1,440 times</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1961</span>
+            <h3>Gagarin flies</h3>
+            <p>
+              Yuri Gagarin becomes the first human being in space, circling the planet
+              once aboard Vostok 1. From launch to landing, the flight that changed our
+              species' address lasted less than two hours.
+            </p>
+            <span class="milestone-fact">108 minutes · 1 orbit · age 27</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1969</span>
+            <h3>Boots on the Moon</h3>
+            <p>
+              Apollo 11's Eagle lands with about 25 seconds of fuel to spare.
+              Neil Armstrong and Buzz Aldrin walk on another world while an estimated
+              600 million people — a fifth of humanity — watch live.
+            </p>
+            <span class="milestone-fact">21.5 hrs on the surface · 21.6 kg of Moon brought home</span>
+          </div>
+        </article>
+
+        <!-- ERA II -->
+        <div class="era reveal" id="explorers"><span>Era II — The Explorers</span></div>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1977</span>
+            <h3>The Voyagers depart</h3>
+            <p>
+              Twin probes launch on a once-in-176-years planetary alignment, cameras
+              first at Jupiter and Saturn, then beyond. Voyager 1 is now the most distant
+              human-made object — and it is still whispering data home.
+            </p>
+            <span class="milestone-fact">25+ billion km away · carries the Golden Record</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1990</span>
+            <h3>Hubble opens its eye</h3>
+            <p>
+              Above the blur of the atmosphere, the Hubble Space Telescope begins
+              rewriting textbooks: the universe's age, black holes at galactic centers,
+              and one famous long stare at "empty" sky that revealed thousands of galaxies.
+            </p>
+            <span class="milestone-fact">1.6+ million observations and counting</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1997</span>
+            <h3>First wheels on Mars</h3>
+            <p>
+              The microwave-oven-sized Sojourner rover rolls off its lander and becomes
+              the first vehicle to drive on another planet — the great-grandmother of
+              every Mars rover since.
+            </p>
+            <span class="milestone-fact">11.5 kg · drove ~100 meters</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">1998</span>
+            <h3>The Station rises</h3>
+            <p>
+              The first module of the International Space Station launches. Since
+              November 2000 there has not been a single day with every human on Earth —
+              someone has always been living in orbit.
+            </p>
+            <span class="milestone-fact">continuously crewed for 25 years · 16 sunrises a day</span>
+          </div>
+        </article>
+
+        <!-- ERA III -->
+        <div class="era reveal" id="newage"><span>Era III — The New Age</span></div>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">2012</span>
+            <h3>Seven minutes of terror</h3>
+            <p>
+              Too heavy for airbags, the car-sized Curiosity rover is lowered onto Mars
+              by a hovering rocket crane — a landing so audacious its own engineers
+              nicknamed the descent "seven minutes of terror." It worked, flawlessly.
+            </p>
+            <span class="milestone-fact">899 kg · still exploring Gale Crater today</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">2015</span>
+            <h3>Pluto, at last</h3>
+            <p>
+              After a nine-and-a-half-year sprint, New Horizons races past Pluto and
+              finds not a dead rock but a world with nitrogen glaciers and a heart-shaped
+              plain — completing the first reconnaissance of the classical solar system.
+            </p>
+            <span class="milestone-fact">9.5 years · 5 billion km · flyby at 49,600 km/h</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">2020</span>
+            <h3>Spaceflight goes commercial</h3>
+            <p>
+              A privately built spacecraft — SpaceX's Crew Dragon — carries astronauts
+              to orbit for the first time. Rockets that land themselves and fly again
+              stop being science fiction and start being Tuesday.
+            </p>
+            <span class="milestone-fact">first crewed commercial flight · boosters reused 20+ times</span>
+          </div>
+        </article>
+
+        <article class="milestone reveal">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">2021</span>
+            <h3>New eyes, new wings</h3>
+            <p>
+              The James Webb Space Telescope launches to see the universe's first
+              galaxies in infrared — while on Mars, the little helicopter Ingenuity
+              makes the first powered flight on another world: a 39-second Wright-brothers
+              moment, 280 million kilometers from Kitty Hawk.
+            </p>
+            <span class="milestone-fact">JWST: 6.5 m mirror · Ingenuity: 72 flights</span>
+          </div>
+        </article>
+
+        <!-- ERA IV -->
+        <div class="era reveal" id="next"><span>Era IV — What's Next</span></div>
+
+        <article class="milestone reveal milestone-future">
+          <div class="milestone-dot" aria-hidden="true"></div>
+          <div class="milestone-card">
+            <span class="milestone-year">Soon</span>
+            <h3>The return — and the leap</h3>
+            <p>
+              Artemis aims to put the first woman on the Moon and build a permanent
+              presence there. Starship is being built to carry a hundred people at a
+              time. And somewhere in a classroom right now sits the first human who
+              will walk on Mars.
+            </p>
+            <a class="btn btn-primary milestone-cta" href="index.html#landing">Watch the Mars landing ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-orb" aria-hidden="true"></span>
+        COSMOS
+      </a>
+      <p class="footer-quote">"The Earth is the cradle of humanity, but mankind cannot stay in the cradle forever." — Konstantin Tsiolkovsky</p>
+      <p class="footer-fine">Imagery courtesy of NASA / ESA archives · Built for the endlessly curious</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="journey.js"></script>
+</body>
+</html>
