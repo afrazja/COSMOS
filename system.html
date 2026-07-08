@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The System — COSMOS</title>
+  <meta name="description" content="A living map of the solar system — watch the planets orbit and click any world for its story." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <a class="logo" href="index.html">
+      <span class="logo-orb" aria-hidden="true"></span>
+      COSMOS
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="journey.html">The Journey</a></li>
+      <li><a href="sky.html" class="nav-live">Tonight's Sky<span class="live-dot" aria-hidden="true"></span></a></li>
+    </ul>
+    <a href="index.html#explore" class="nav-cta">Begin Journey</a>
+  </nav>
+
+  <main class="sky-page">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="sky-hero">
+      <p class="eyebrow">Our neighborhood, in motion</p>
+      <h1>The <em>system</em></h1>
+      <p class="section-sub sky-hero-sub">
+        Eight worlds, one star, and everything in between — moving at a million times
+        real speed. <strong>Click any planet</strong> to read its story, and drag the
+        slider to bend time.
+      </p>
+    </header>
+
+    <!-- ============ ORRERY ============ -->
+    <section class="section orrery-section" id="map">
+      <div class="orrery-wrap reveal">
+        <div class="orrery-stage">
+          <canvas id="orrery" aria-label="Animated top-down map of the solar system. Planets orbit the sun; click one to view its details."></canvas>
+          <div class="orrery-controls">
+            <label class="orrery-speed-label" for="orrery-speed">Time</label>
+            <input type="range" id="orrery-speed" min="0" max="6" step="0.1" value="1" />
+            <span class="orrery-rate" id="orrery-rate">1 s ≈ 10 days</span>
+          </div>
+        </div>
+
+        <aside class="body-panel" id="body-panel" aria-live="polite">
+          <!-- filled by system.js -->
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-orb" aria-hidden="true"></span>
+        COSMOS
+      </a>
+      <p class="footer-quote">"The universe is under no obligation to make sense to you." — Neil deGrasse Tyson</p>
+      <p class="footer-fine">Orbital periods to true Kepler ratios · sizes and distances stylized for visibility</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="system.js"></script>
+</body>
+</html>
