@@ -1659,6 +1659,22 @@ footer {
   font-style: italic;
   max-width: 52ch;
 }
+.footer-contact {
+  color: var(--teal);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 1.2rem;
+  border: 1px solid rgba(94, 234, 212, 0.3);
+  border-radius: 999px;
+  background: rgba(94, 234, 212, 0.06);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.footer-contact:hover {
+  border-color: rgba(94, 234, 212, 0.6);
+  box-shadow: 0 0 18px var(--glow-teal);
+}
+
 .footer-fine {
   color: #5a5f85;
   font-size: 0.78rem;
