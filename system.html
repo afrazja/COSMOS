@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The System — COSMOS</title>
-  <meta name="description" content="A living map of the solar system — watch the planets orbit and click any world for its story." />
+  <meta name="description" content="A fullscreen 3D solar system — fly between the planets, zoom in, and orbit any world from any angle." />
   <link rel="canonical" href="https://cosmos-space-one.vercel.app/system" />
   <meta name="theme-color" content="#05060f" />
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
@@ -12,26 +12,26 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="COSMOS" />
   <meta property="og:title" content="The System — COSMOS" />
-  <meta property="og:description" content="A living map of the solar system — watch the planets orbit and click any world for its story." />
+  <meta property="og:description" content="A fullscreen 3D solar system — fly between the planets, zoom in, and orbit any world from any angle." />
   <meta property="og:url" content="https://cosmos-space-one.vercel.app/system" />
   <meta property="og:image" content="https://cosmos-space-one.vercel.app/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="The System — COSMOS" />
-  <meta name="twitter:description" content="A living map of the solar system — watch the planets orbit and click any world for its story." />
+  <meta name="twitter:description" content="A fullscreen 3D solar system — fly between the planets, zoom in, and orbit any world from any angle." />
   <meta name="twitter:image" content="https://cosmos-space-one.vercel.app/og-card.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="app-mode">
 
   <div id="progress" aria-hidden="true"></div>
   <canvas id="starfield" aria-hidden="true"></canvas>
 
-  <!-- ============ NAV ============ -->
+  <!-- ============ NAV (floats over the scene) ============ -->
   <nav id="nav">
     <a class="logo" href="/">
       <span class="logo-orb" aria-hidden="true"></span>
@@ -49,50 +49,40 @@
     <a href="/#explore" class="nav-cta">Begin Journey</a>
   </nav>
 
-  <main class="sky-page">
+  <!-- ============ FULLSCREEN 3D SYSTEM ============ -->
+  <main class="system-app">
+    <div id="orrery3d" aria-label="Interactive 3D solar system. Drag to orbit, scroll to zoom, click a planet to travel to it."></div>
 
-    <!-- ============ PAGE HEADER ============ -->
-    <header class="sky-hero">
-      <p class="eyebrow">Our neighborhood, in motion</p>
-      <h1>The <em>system</em></h1>
-      <p class="section-sub sky-hero-sub">
-        Eight worlds, one star — in full 3D. <strong>Click any planet to fly to it</strong>,
-        scroll to zoom, drag to orbit around it from any angle, and bend time with the slider.
-      </p>
-    </header>
+    <!-- dossier: floating corner card, collapsible -->
+    <aside class="app-panel" id="app-panel">
+      <button class="panel-toggle" id="panel-toggle" aria-expanded="true">
+        <span>Dossier</span><span class="panel-chevron" aria-hidden="true">▾</span>
+      </button>
+      <div class="app-panel-body" id="body-panel" aria-live="polite"></div>
+    </aside>
 
-    <!-- ============ ORRERY ============ -->
-    <section class="section orrery-section" id="map">
-      <div class="orrery-wrap reveal">
-        <div class="orrery-stage">
-          <div id="orrery3d" aria-label="Interactive 3D solar system. Drag to orbit, scroll to zoom, click a planet to travel to it."></div>
-          <div class="orrery-controls">
-            <label class="orrery-speed-label" for="orrery-speed">Time</label>
-            <input type="range" id="orrery-speed" min="0" max="6" step="0.1" value="1" />
-            <span class="orrery-rate" id="orrery-rate">1 s ≈ 10 days</span>
-          </div>
-          <div class="planet-chips" id="planet-chips" role="group" aria-label="Travel to a body"></div>
-        </div>
+    <!-- travel chips -->
+    <div class="app-chips" id="planet-chips" role="group" aria-label="Travel to a body"></div>
 
-        <aside class="body-panel" id="body-panel" aria-live="polite">
-          <!-- filled by system.js -->
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer>
-    <div class="footer-inner">
-      <a class="logo" href="/">
-        <span class="logo-orb" aria-hidden="true"></span>
-        COSMOS
-      </a>
-      <p class="footer-quote">"The universe is under no obligation to make sense to you." — Neil deGrasse Tyson</p>
-      <a class="footer-contact" href="mailto:afz.javan@gmail.com">✉&nbsp;afz.javan@gmail.com</a>
-      <p class="footer-fine">Orbital periods to true Kepler ratios · sizes and distances stylized for visibility</p>
+    <!-- time control -->
+    <div class="app-time">
+      <label class="orrery-speed-label" for="orrery-speed">Time</label>
+      <input type="range" id="orrery-speed" min="0" max="6" step="0.1" value="1" />
+      <span class="orrery-rate" id="orrery-rate">1 s ≈ 10 days</span>
     </div>
-  </footer>
+
+    <!-- about / credits -->
+    <button class="app-info-btn" id="app-info-btn" aria-label="About this map" aria-expanded="false">i</button>
+    <div class="app-info" id="app-info" hidden>
+      <h3>The <em>system</em></h3>
+      <p>Eight worlds, one star. Orbital periods follow true Kepler ratios; sizes and distances are stylized so everything stays visible.</p>
+      <p>Drag to orbit · scroll to zoom · click any planet (or a chip below) to travel to it. The camera rides along with your planet while it orbits.</p>
+      <p class="app-credits">Earth map: NASA · other textures: AI-generated · <a href="mailto:afz.javan@gmail.com">✉ afz.javan@gmail.com</a></p>
+    </div>
+
+    <!-- first-visit hint, fades away -->
+    <p class="app-hint" id="app-hint">drag to orbit &nbsp;·&nbsp; scroll to zoom &nbsp;·&nbsp; click a planet to travel</p>
+  </main>
 
   <script src="script.js"></script>
 

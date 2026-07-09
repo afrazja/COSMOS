@@ -210,10 +210,11 @@ function init() {
     }
   }
 
-  /* ---------- sizing ---------- */
+  /* ---------- sizing: the container fills the viewport ---------- */
   function resize() {
     const w = container.clientWidth;
-    const h = Math.max(340, Math.min(Math.round(window.innerHeight * 0.72), Math.round(w * 0.8)));
+    const h = container.clientHeight;
+    if (!w || !h) return;
     renderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -282,7 +283,35 @@ function init() {
     BODIES.forEach((o) => o.orbitLine.material.color.set(o === b ? 0x5eead4 : 0xa78bfa));
     renderPanel(b || SUN);
     markChips();
+    if (panelWrap) panelWrap.classList.remove('collapsed'); // show the dossier for the chosen body
   }
+
+  /* ---------- app-mode UI: dossier toggle, info popover, fading hint ---------- */
+  const panelWrap = document.getElementById('app-panel');
+  const panelToggle = document.getElementById('panel-toggle');
+  if (panelWrap && panelToggle) {
+    if (window.innerWidth < 720) panelWrap.classList.add('collapsed'); // phones start tidy
+    panelToggle.addEventListener('click', () => {
+      const collapsed = panelWrap.classList.toggle('collapsed');
+      panelToggle.setAttribute('aria-expanded', String(!collapsed));
+    });
+  }
+
+  const infoBtn = document.getElementById('app-info-btn');
+  const infoBox = document.getElementById('app-info');
+  if (infoBtn && infoBox) {
+    infoBtn.addEventListener('click', () => {
+      infoBox.hidden = !infoBox.hidden;
+      infoBtn.setAttribute('aria-expanded', String(!infoBox.hidden));
+    });
+  }
+
+  const hint = document.getElementById('app-hint');
+  if (hint) {
+    setTimeout(() => hint.classList.add('gone'), 8000);
+    renderer.domElement.addEventListener('pointerdown', () => hint.classList.add('gone'), { once: true });
+  }
+
   renderPanel(SUN);
   markChips();
 
