@@ -201,6 +201,8 @@ h1 em, h2 em {
 .nav-links a:hover { color: var(--text); }
 .nav-links a:hover::after { transform: scaleX(1); }
 
+.mobile-nav-cta { display: none; }
+
 .nav-toggle {
   display: none;
   width: 42px;
@@ -1778,6 +1780,7 @@ footer {
   .nav-toggle {
     display: inline-flex;
     order: 3;
+    flex: 0 0 42px;
   }
   .nav-cta {
     order: 2;
@@ -1812,6 +1815,7 @@ footer {
     padding: 0.75rem 0.85rem;
   }
   .nav-links a::after { display: none; }
+  .mobile-nav-cta { display: none; }
 
   .planet-slide {
     grid-template-columns: 1fr;
@@ -1853,12 +1857,33 @@ footer {
     height: 12px;
   }
   .nav-cta {
-    padding: 0.55rem 0.9rem;
-    font-size: 0.78rem;
+    display: none;
   }
   .nav-toggle {
-    width: 40px;
-    height: 40px;
+    order: 2;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.24), rgba(94, 234, 212, 0.12));
+    border-color: rgba(238, 240, 255, 0.62);
+    box-shadow: 0 0 22px rgba(167, 139, 250, 0.24);
+  }
+  .nav-toggle span {
+    width: 19px;
+    height: 2px;
+  }
+  .mobile-nav-cta {
+    display: block;
+    margin-top: 0.25rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(167, 139, 250, 0.16);
+  }
+  .mobile-nav-cta a {
+    color: var(--text);
+    border: 1px solid rgba(167, 139, 250, 0.38);
+    border-radius: 14px;
+    background: rgba(167, 139, 250, 0.12);
+    text-align: center;
   }
   .globe-stage {
     width: min(82vw, 420px);
