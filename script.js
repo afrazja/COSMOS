@@ -200,6 +200,13 @@
         navToggle.setAttribute('aria-expanded', 'false');
       })
     );
+    // tapping the dark scrim (the nav's own backdrop) closes the menu
+    nav.addEventListener('click', (e) => {
+      if (e.target === nav && nav.classList.contains('menu-open')) {
+        nav.classList.remove('menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
 
   /* mouse-depth parallax in the hero (fine pointers only) */
