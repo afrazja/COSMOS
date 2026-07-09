@@ -21,6 +21,8 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.json': 'application/json',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm'
 };
@@ -28,6 +30,8 @@ const MIME = {
 http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath === '/') urlPath = '/index.html';
+  if (urlPath.length > 1 && urlPath.endsWith('/')) urlPath = urlPath.slice(0, -1);
+  if (!path.extname(urlPath)) urlPath += '.html';
 
   const filePath = path.join(ROOT, urlPath);
   if (!filePath.startsWith(ROOT)) {

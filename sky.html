@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tonight's Sky — COSMOS</title>
   <meta name="description" content="Live from space: NASA's picture of the day, the ISS position right now, and upcoming rocket launches." />
+  <meta name="theme-color" content="#05060f" />
+  <link rel="canonical" href="https://cosmos-space-one.vercel.app/sky" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tonight's Sky - COSMOS" />
+  <meta property="og:description" content="Live from space: NASA's picture of the day, the ISS position right now, and upcoming rocket launches." />
+  <meta property="og:url" content="https://cosmos-space-one.vercel.app/sky" />
+  <meta property="og:image" content="https://cosmos-space-one.vercel.app/assets/hero.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tonight's Sky - COSMOS" />
+  <meta name="twitter:description" content="Live from space: NASA's picture of the day, the ISS position right now, and upcoming rocket launches." />
+  <meta name="twitter:image" content="https://cosmos-space-one.vercel.app/assets/hero.webp" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -17,18 +29,23 @@
 
   <!-- ============ NAV ============ -->
   <nav id="nav">
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <span class="logo-orb" aria-hidden="true"></span>
       COSMOS
     </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <ul class="nav-links" id="primary-navigation">
+      <li><a href="/">Home</a></li>
       <li><a href="#iss">ISS Live</a></li>
       <li><a href="#launches">Launches</a></li>
-      <li><a href="system.html">The System</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="/system">The System</a></li>
+      <li><a href="/gallery">Gallery</a></li>
     </ul>
-    <a href="index.html#explore" class="nav-cta">Begin Journey</a>
+    <a href="/#explore" class="nav-cta">Begin Journey</a>
   </nav>
 
   <main class="sky-page">
@@ -116,7 +133,7 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-inner">
-      <a class="logo" href="index.html">
+      <a class="logo" href="/">
         <span class="logo-orb" aria-hidden="true"></span>
         COSMOS
       </a>

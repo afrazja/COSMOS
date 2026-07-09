@@ -253,7 +253,9 @@ function init() {
   function addChip(label, body) {
     const c = document.createElement('button');
     c.className = 'chip';
+    c.type = 'button';
     c.textContent = label;
+    c.setAttribute('aria-pressed', 'false');
     c.addEventListener('click', () => setFocus(body));
     chipsWrap.appendChild(c);
     chips.push({ el: c, body });
@@ -263,7 +265,11 @@ function init() {
   BODIES.forEach((b) => addChip(b.name, b));
 
   function markChips() {
-    chips.forEach((c) => c.el.classList.toggle('on', c.body === focus || (c.body === null && focus === null)));
+    chips.forEach((c) => {
+      const selected = c.body === focus || (c.body === null && focus === null);
+      c.el.classList.toggle('on', selected);
+      c.el.setAttribute('aria-pressed', String(selected));
+    });
   }
 
   /* ---------- focus / fly-to system ---------- */

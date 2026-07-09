@@ -16,11 +16,46 @@
     });
   }
 
+  const APOD_CACHE_MS = 12 * 60 * 60 * 1000;
+  const LAUNCH_CACHE_MS = 30 * 60 * 1000;
+
+  function readCache(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeCache(key, data) {
+    try {
+      localStorage.setItem(key, JSON.stringify({ time: Date.now(), data }));
+    } catch (e) {
+      // Cache storage is optional; the live page still works without it.
+    }
+  }
+
+  function fetchCached(key, url, maxAge) {
+    const cached = readCache(key);
+    if (cached && Date.now() - cached.time < maxAge) return Promise.resolve(cached.data);
+
+    return fetch(url)
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((data) => {
+        writeCache(key, data);
+        return data;
+      })
+      .catch((err) => {
+        if (cached) return cached.data;
+        throw err;
+      });
+  }
+
   /* ---------- 1. APOD ---------- */
   const apodMedia = document.getElementById('apod-media');
 
-  fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true')
-    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  fetchCached('cosmos-apod', 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true', APOD_CACHE_MS)
     .then((d) => {
       document.getElementById('apod-title').textContent = d.title || 'Untitled';
       document.getElementById('apod-meta').textContent =
@@ -113,8 +148,7 @@
   /* ---------- 3. Upcoming launches ---------- */
   const list = document.getElementById('launch-list');
 
-  fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=6')
-    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  fetchCached('cosmos-launches', 'https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=6', LAUNCH_CACHE_MS)
     .then((d) => {
       const launches = (d.results || []).filter((l) => l.net);
       if (!launches.length) throw new Error('empty');

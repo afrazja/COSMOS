@@ -156,11 +156,34 @@
   const progress = document.getElementById('progress');
   const heroBg = document.querySelector('.hero-bg');
   const heroContent = document.querySelector('.hero-content');
+  const navToggle = nav ? nav.querySelector('.nav-toggle') : null;
   let ticking = false;
   let mouseX = 0, mouseY = 0; // normalized -1..1, eased toward target
   let targetX = 0, targetY = 0;
 
   let lastY = window.scrollY;
+
+  function setNavOpen(open) {
+    if (!nav || !navToggle) return;
+    nav.classList.toggle('nav-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  }
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      setNavOpen(!nav.classList.contains('nav-open'));
+    });
+    nav.querySelectorAll('.nav-links a').forEach((link) => {
+      link.addEventListener('click', () => setNavOpen(false));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setNavOpen(false);
+    });
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target)) setNavOpen(false);
+    });
+  }
 
   function onScroll() {
     if (ticking) return;
@@ -336,7 +359,11 @@
     const n = slides.length;
 
     const active = Math.min(Math.floor(P * n), n - 1);
-    dots.forEach((d, i) => d.classList.toggle('on', i === active));
+    dots.forEach((d, i) => {
+      const selected = i === active;
+      d.classList.toggle('on', selected);
+      d.setAttribute('aria-pressed', String(selected));
+    });
     if (stageHint) stageHint.style.opacity = P < 0.04 ? 1 : 0;
 
     const W = window.innerWidth;
@@ -427,9 +454,31 @@
     updateLanding();
   }
   if (lvid && !reduceMotion) {
-    if (lvid.readyState >= 2) enableVideoMode();
-    else lvid.addEventListener('loadeddata', enableVideoMode);
+    function loadLandingVideo() {
+      if (lvid.dataset.loaded === 'true') return;
+      const src = lvid.dataset.src;
+      if (src) lvid.src = src;
+      lvid.dataset.loaded = 'true';
+      lvid.load();
+    }
+
+    lvid.addEventListener('loadeddata', enableVideoMode, { once: true });
     lvid.addEventListener('error', () => { videoMode = false; });
+    if (lvid.readyState >= 2) {
+      enableVideoMode();
+    } else if (lvid.dataset.src && 'IntersectionObserver' in window && lpin) {
+      const videoIo = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          loadLandingVideo();
+          videoIo.disconnect();
+        },
+        { rootMargin: '700px 0px' }
+      );
+      videoIo.observe(lpin);
+    } else {
+      loadLandingVideo();
+    }
   }
 
   function updateLanding() {

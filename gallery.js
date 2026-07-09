@@ -61,8 +61,12 @@
   /* ---------- filters ---------- */
   document.querySelectorAll('.gallery-filters .chip').forEach((chip) => {
     chip.addEventListener('click', () => {
-      document.querySelectorAll('.gallery-filters .chip').forEach((c) => c.classList.remove('on'));
+      document.querySelectorAll('.gallery-filters .chip').forEach((c) => {
+        c.classList.remove('on');
+        c.setAttribute('aria-pressed', 'false');
+      });
       chip.classList.add('on');
+      chip.setAttribute('aria-pressed', 'true');
       render(chip.dataset.filter);
     });
   });
