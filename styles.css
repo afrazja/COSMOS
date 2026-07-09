@@ -1405,10 +1405,52 @@ body.no-pin .ship-shadow { opacity: 0.55; }
   background: rgba(10, 12, 28, 0.45);
   border: 1px solid rgba(167, 139, 250, 0.14);
   overflow: hidden;
+  position: relative;
 }
-#orrery {
+#orrery3d {
   display: block;
   width: 100%;
+  cursor: grab;
+}
+#orrery3d:active { cursor: grabbing; }
+#orrery3d canvas { display: block; }
+
+/* floating name tag that follows the cursor over planets */
+.orbit-tip {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  background: rgba(5, 6, 15, 0.8);
+  border: 1px solid rgba(94, 234, 212, 0.4);
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 5;
+  white-space: nowrap;
+}
+
+/* travel chips under the viewport */
+.planet-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.9rem 1.1rem 1.1rem;
+  border-top: 1px solid rgba(167, 139, 250, 0.14);
+}
+.planet-chips .chip { padding: 0.4rem 0.95rem; font-size: 0.78rem; }
+
+.panel-view-note {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  padding: 1rem;
+  text-align: center;
+  animation: pulse-fade 2.4s ease-in-out infinite;
 }
 
 .orrery-controls {
@@ -1450,8 +1492,8 @@ body.no-pin .ship-shadow { opacity: 0.55; }
 .panel-media {
   display: grid;
   place-items: center;
-  min-height: 150px;
-  margin-bottom: 1.2rem;
+  min-height: 60px;
+  margin-bottom: 0.8rem;
 }
 .panel-img {
   width: min(58%, 190px);

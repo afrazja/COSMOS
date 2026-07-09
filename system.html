@@ -37,9 +37,8 @@
       <p class="eyebrow">Our neighborhood, in motion</p>
       <h1>The <em>system</em></h1>
       <p class="section-sub sky-hero-sub">
-        Eight worlds, one star, and everything in between — moving at a million times
-        real speed. <strong>Click any planet</strong> to read its story, and drag the
-        slider to bend time.
+        Eight worlds, one star — in full 3D. <strong>Click any planet to fly to it</strong>,
+        scroll to zoom, drag to orbit around it from any angle, and bend time with the slider.
       </p>
     </header>
 
@@ -47,12 +46,13 @@
     <section class="section orrery-section" id="map">
       <div class="orrery-wrap reveal">
         <div class="orrery-stage">
-          <canvas id="orrery" aria-label="Animated top-down map of the solar system. Planets orbit the sun; click one to view its details."></canvas>
+          <div id="orrery3d" aria-label="Interactive 3D solar system. Drag to orbit, scroll to zoom, click a planet to travel to it."></div>
           <div class="orrery-controls">
             <label class="orrery-speed-label" for="orrery-speed">Time</label>
             <input type="range" id="orrery-speed" min="0" max="6" step="0.1" value="1" />
             <span class="orrery-rate" id="orrery-rate">1 s ≈ 10 days</span>
           </div>
+          <div class="planet-chips" id="planet-chips" role="group" aria-label="Travel to a body"></div>
         </div>
 
         <aside class="body-panel" id="body-panel" aria-live="polite">
@@ -76,7 +76,17 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="system.js"></script>
+
+  <!-- Three.js for the 3D solar system -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="system3d.js"></script>
   <!-- Vercel Web Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
