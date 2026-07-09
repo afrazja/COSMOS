@@ -9,7 +9,16 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const container = document.getElementById('globe');
-if (container) init(container);
+if (container) {
+  // don't spend bandwidth/GPU until the section is approaching
+  const startWhenNear = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      startWhenNear.disconnect();
+      init(container);
+    }
+  }, { rootMargin: '600px' });
+  startWhenNear.observe(container);
+}
 
 function init(container) {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

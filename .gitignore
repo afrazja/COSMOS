@@ -4,5 +4,7 @@
 # local-only originals and working files (the site uses assets/*.webp)
 /*.png
 /*.mp4
+!/favicon.png
+!/apple-touch-icon.png
 assets/*.png
 assets/landing-scrub.mp4

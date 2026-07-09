@@ -19,8 +19,13 @@
   /* ---------- 1. APOD ---------- */
   const apodMedia = document.getElementById('apod-media');
 
-  fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true')
+  // cached server proxy first (no rate-limit exposure); direct NASA as fallback
+  fetch('/api/apod')
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .catch(() =>
+      fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true')
+        .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    )
     .then((d) => {
       document.getElementById('apod-title').textContent = d.title || 'Untitled';
       document.getElementById('apod-meta').textContent =

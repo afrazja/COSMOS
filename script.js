@@ -186,6 +186,22 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* mobile hamburger menu */
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('menu-open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    document.querySelectorAll('.nav-links a').forEach((a) =>
+      a.addEventListener('click', () => {
+        nav.classList.remove('menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
+
   /* mouse-depth parallax in the hero (fine pointers only) */
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (finePointer && !reduceMotion && heroBg) {
@@ -430,6 +446,17 @@
     if (lvid.readyState >= 2) enableVideoMode();
     else lvid.addEventListener('loadeddata', enableVideoMode);
     lvid.addEventListener('error', () => { videoMode = false; });
+
+    // the video ships with preload="metadata"; pull the full file only
+    // once the landing section is approaching the viewport
+    const warm = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        warm.disconnect();
+        lvid.preload = 'auto';
+        lvid.load();
+      }
+    }, { rootMargin: '1500px' });
+    warm.observe(lpin);
   }
 
   function updateLanding() {

@@ -1,6 +1,8 @@
 # local-only files — not needed by the deployed site
 /*.png
 /*.mp4
+!/favicon.png
+!/apple-touch-icon.png
 local-server.js
 Start COSMOS.bat
 
