@@ -113,6 +113,32 @@ function init() {
   sky.mapping = THREE.EquirectangularReflectionMapping;
   scene.background = sky;
 
+  /* crisp foreground stars rendered live over the panorama —
+     pinpoint-sharp at native display resolution, which no texture
+     stretched around a 360° sphere can match */
+  {
+    const N = 1600;
+    const pos = new Float32Array(N * 3);
+    const col = new Float32Array(N * 3);
+    const tint = [
+      [1.0, 1.0, 1.0], [0.85, 0.9, 1.0], [1.0, 0.92, 0.78], [0.8, 1.0, 0.95]
+    ];
+    for (let i = 0; i < N; i++) {
+      const v = new THREE.Vector3().randomDirection().multiplyScalar(300 + Math.random() * 150);
+      pos.set([v.x, v.y, v.z], i * 3);
+      const t = tint[(Math.random() * tint.length) | 0];
+      const b = 0.5 + Math.random() * 0.5;
+      col.set([t[0] * b, t[1] * b, t[2] * b], i * 3);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    scene.add(new THREE.Points(g, new THREE.PointsMaterial({
+      vertexColors: true, size: 1.6, sizeAttenuation: false,
+      transparent: true, opacity: 0.95, depthWrite: false
+    })));
+  }
+
   /* ---------- sun ---------- */
   const sunMesh = new THREE.Mesh(
     new THREE.SphereGeometry(SUN.r, 48, 48),
