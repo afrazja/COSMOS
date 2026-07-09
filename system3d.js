@@ -98,62 +98,25 @@ function init() {
     return t;
   }
 
-  function bandTex(colors) {
-    return canvasTex((ctx, w, h) => {
-      const g = ctx.createLinearGradient(0, 0, 0, h);
-      const n = colors.length;
-      colors.forEach((col, i) => {
-        g.addColorStop(Math.min(i / (n - 1), 1), col);
-        // hard-ish band edges for gas-giant stripes
-        if (i < n - 1) g.addColorStop(Math.min((i + 0.85) / (n - 1), 1), colors[i + 1]);
-      });
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, w, h);
-      // subtle turbulence streaks
-      for (let i = 0; i < 260; i++) {
-        ctx.fillStyle = 'rgba(255,255,255,' + (Math.random() * 0.05) + ')';
-        const y = Math.random() * h;
-        ctx.fillRect(Math.random() * w, y, 30 + Math.random() * 120, 1 + Math.random() * 2);
-        ctx.fillStyle = 'rgba(0,0,0,' + (Math.random() * 0.05) + ')';
-        ctx.fillRect(Math.random() * w, Math.random() * h, 30 + Math.random() * 120, 1 + Math.random() * 2);
-      }
-    });
+  /* ---------- texture loading (AI-generated maps) ---------- */
+  const loader = new THREE.TextureLoader();
+  const maxAniso = renderer.capabilities.getMaxAnisotropy();
+  function tex(url) {
+    const t = loader.load(url);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = maxAniso;
+    return t;
   }
 
-  function speckleTex(base) {
-    return canvasTex((ctx, w, h) => {
-      ctx.fillStyle = base;
-      ctx.fillRect(0, 0, w, h);
-      for (let i = 0; i < 1400; i++) {
-        const a = Math.random();
-        ctx.fillStyle = a < 0.5
-          ? 'rgba(0,0,0,' + (0.04 + Math.random() * 0.12) + ')'
-          : 'rgba(255,255,255,' + (0.03 + Math.random() * 0.07) + ')';
-        ctx.beginPath();
-        ctx.arc(Math.random() * w, Math.random() * h, 0.5 + Math.random() * 2.4, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    });
-  }
-
-  /* ---------- starfield ---------- */
-  {
-    const pos = new Float32Array(1800 * 3);
-    for (let i = 0; i < 1800; i++) {
-      const v = new THREE.Vector3().randomDirection().multiplyScalar(280 + Math.random() * 120);
-      pos.set([v.x, v.y, v.z], i * 3);
-    }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    scene.add(new THREE.Points(g, new THREE.PointsMaterial({
-      color: 0xdde2ff, size: 1.5, sizeAttenuation: false, transparent: true, opacity: 0.8
-    })));
-  }
+  /* ---------- background: Milky Way skybox ---------- */
+  const sky = tex('assets/3d/skybox.webp');
+  sky.mapping = THREE.EquirectangularReflectionMapping;
+  scene.background = sky;
 
   /* ---------- sun ---------- */
   const sunMesh = new THREE.Mesh(
     new THREE.SphereGeometry(SUN.r, 48, 48),
-    new THREE.MeshBasicMaterial({ color: 0xffe2a0 })
+    new THREE.MeshBasicMaterial({ map: tex('assets/3d/tex-sun.webp') })
   );
   scene.add(sunMesh);
 
@@ -172,7 +135,6 @@ function init() {
   scene.add(glow);
 
   /* ---------- orbits + planets ---------- */
-  const loader = new THREE.TextureLoader();
   const clickable = [sunMesh];
   sunMesh.userData.body = SUN;
 
@@ -203,7 +165,7 @@ function init() {
       mat.map.colorSpace = THREE.SRGBColorSpace;
     } else {
       mat = new THREE.MeshPhongMaterial({
-        map: b.tex.bands ? bandTex(b.tex.bands) : speckleTex(b.tex.base),
+        map: tex('assets/3d/tex-' + b.key + '.webp'),
         shininess: 6
       });
     }
@@ -218,24 +180,7 @@ function init() {
     if (b.key === 'uranus') b.mesh.rotation.z = Math.PI / 2 * 0.98; // the sideways planet
 
     if (b.ring) {
-      const ringTex = canvasTex((ctx, w, h) => {
-        const bands = [
-          [0.00, 0.10, 'rgba(0,0,0,0)'],
-          [0.10, 0.46, 'rgba(203, 180, 136, 0.75)'],
-          [0.46, 0.52, 'rgba(60, 45, 25, 0.25)'],   // Cassini division
-          [0.52, 0.86, 'rgba(221, 201, 160, 0.8)'],
-          [0.86, 1.00, 'rgba(190, 168, 126, 0.35)']
-        ];
-        for (const [a, z, col] of bands) {
-          ctx.fillStyle = col;
-          ctx.fillRect(a * w, 0, (z - a) * w, h);
-        }
-        for (let i = 0; i < 60; i++) { // fine ringlets
-          ctx.fillStyle = 'rgba(0,0,0,' + (Math.random() * 0.15) + ')';
-          ctx.fillRect(Math.random() * w, 0, 1, h);
-        }
-      }, 512, 8);
-
+      const ringTex = tex('assets/3d/tex-rings.webp');
       const ringGeo = new THREE.RingGeometry(b.r * 1.25, b.r * 2.3, 96);
       // remap UVs so the texture runs radially
       const p = ringGeo.attributes.position;
@@ -257,7 +202,7 @@ function init() {
       b.moonPivot = new THREE.Group();
       const moon = new THREE.Mesh(
         new THREE.SphereGeometry(0.13, 24, 24),
-        new THREE.MeshPhongMaterial({ map: speckleTex('#b9b9c2'), shininess: 4 })
+        new THREE.MeshPhongMaterial({ map: tex('assets/3d/tex-moon.webp'), shininess: 4 })
       );
       moon.position.set(1.05, 0, 0);
       b.moonPivot.add(moon);
