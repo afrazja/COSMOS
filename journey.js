@@ -13,11 +13,13 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const milestones = Array.from(tl.querySelectorAll('.milestone'));
   const eras = Array.from(tl.querySelectorAll('.era'));
+  const rocket = document.getElementById('timeline-rocket');
 
   if (reduceMotion) {
     fill.style.transform = 'scaleY(1)';
     milestones.forEach((m) => m.classList.add('lit'));
     eras.forEach((e) => e.classList.add('lit'));
+    if (rocket) rocket.style.top = '100%';
     return;
   }
 
@@ -32,6 +34,7 @@
       const pen = window.innerHeight * 0.62;
       const p = Math.min(Math.max((pen - r.top) / r.height, 0), 1);
       fill.style.transform = `scaleY(${p.toFixed(4)})`;
+      if (rocket) rocket.style.top = (p * 100).toFixed(3) + '%';
 
       const penY = r.top + p * r.height;
       for (const m of milestones) {

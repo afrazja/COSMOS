@@ -1336,8 +1336,24 @@ body.no-pin .ship-shadow { opacity: 0.55; }
 .era {
   position: relative;
   text-align: center;
-  padding: 3.2rem 0 2.2rem;
+  padding: 4.2rem 0 2.6rem;
   z-index: 2;
+}
+/* giant ghost year-range behind each era header */
+.era::before {
+  content: attr(data-years);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.2rem, 11vw, 7.5rem);
+  color: var(--text);
+  opacity: 0.05;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
 }
 .era span {
   display: inline-block;
@@ -1362,32 +1378,60 @@ body.no-pin .ship-shadow { opacity: 0.55; }
 .milestone {
   position: relative;
   width: 50%;
-  padding: 1.2rem 3rem 1.2rem 0;
+  padding: 1.2rem 4.4rem 1.2rem 0;
 }
 .milestone:nth-of-type(even) {
   margin-left: 50%;
-  padding: 1.2rem 0 1.2rem 3rem;
+  padding: 1.2rem 0 1.2rem 4.4rem;
 }
 
-.milestone-dot {
+/* photo medallions sit on the line where plain dots used to be */
+.milestone-medal {
   position: absolute;
-  top: 3rem;
-  right: -8px;
-  width: 16px;
-  height: 16px;
+  top: 2rem;
+  right: -39px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
   background: var(--ink-1);
   border: 2px solid rgba(167, 139, 250, 0.4);
-  transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease, scale 0.5s ease;
   z-index: 2;
 }
-.milestone:nth-of-type(even) .milestone-dot { right: auto; left: -8px; }
+.milestone:nth-of-type(even) .milestone-medal { right: auto; left: -39px; }
 
-.milestone.lit .milestone-dot {
-  background: var(--teal);
-  border-color: var(--teal);
-  box-shadow: 0 0 14px var(--glow-teal), 0 0 30px var(--glow-teal);
+.milestone-medal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.55) brightness(0.75);
+  transition: filter 0.6s ease;
 }
+.medal-svg svg { width: 62%; height: 62%; opacity: 0.55; transition: opacity 0.6s ease; }
+
+.milestone.lit .milestone-medal {
+  border-color: var(--teal);
+  box-shadow: 0 0 16px var(--glow-teal), 0 0 40px var(--glow-teal);
+  scale: 1.07;
+}
+.milestone.lit .milestone-medal img { filter: saturate(1) brightness(1); }
+.milestone.lit .medal-svg svg { opacity: 1; }
+
+/* rocket riding the tip of the drawn line */
+.timeline-rocket {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  translate: -50% -40%;
+  width: 30px;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px var(--glow-teal)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+.timeline-rocket svg { display: block; width: 100%; }
 
 .milestone-card {
   padding: 1.6rem 1.7rem;
@@ -1437,16 +1481,23 @@ body.no-pin .ship-shadow { opacity: 0.55; }
 /* reduced-motion fallback handled in journey.js (line full, all lit) */
 
 @media (max-width: 760px) {
-  .timeline-track { left: 14px; }
+  .timeline-track { left: 26px; }
+  .timeline-rocket { left: 26px; width: 24px; }
   .milestone,
   .milestone:nth-of-type(even) {
     width: 100%;
     margin-left: 0;
-    padding: 1rem 0 1rem 2.6rem;
+    padding: 1rem 0 1rem 4.4rem;
   }
-  .milestone-dot,
-  .milestone:nth-of-type(even) .milestone-dot { left: 6px; right: auto; }
-  .era { text-align: left; padding-left: 2.6rem; }
+  .milestone-medal,
+  .milestone:nth-of-type(even) .milestone-medal {
+    left: 0;
+    right: auto;
+    width: 52px;
+    height: 52px;
+  }
+  .era { text-align: left; padding-left: 4.4rem; }
+  .era::before { left: 4.4rem; translate: 0 -50%; }
 }
 
 /* ============================================================
