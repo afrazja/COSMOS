@@ -28,6 +28,8 @@
 </head>
 <body>
 
+
+  <a class="skip-link" href="#main">Skip to content</a>
   <div id="progress" aria-hidden="true"></div>
   <canvas id="starfield" aria-hidden="true"></canvas>
 
@@ -50,7 +52,7 @@
     <a href="#quiz" class="nav-cta">Take the Quiz</a>
   </nav>
 
-  <main class="sky-page careers-page">
+  <main id="main" class="sky-page careers-page">
 
     <!-- ============ PAGE HEADER ============ -->
     <header class="sky-hero careers-hero">
@@ -98,7 +100,7 @@
         </p>
       </div>
 
-      <div class="quiz-card reveal" id="quiz-card">
+      <div class="quiz-card reveal" id="quiz-card" aria-live="polite">
         <!-- filled by careers.js -->
       </div>
     </section>

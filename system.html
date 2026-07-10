@@ -28,6 +28,8 @@
 </head>
 <body class="app-mode">
 
+
+  <a class="skip-link" href="#main">Skip to content</a>
   <div id="progress" aria-hidden="true"></div>
   <canvas id="starfield" aria-hidden="true"></canvas>
 
@@ -50,7 +52,12 @@
   </nav>
 
   <!-- ============ FULLSCREEN 3D SYSTEM ============ -->
-  <main class="system-app">
+  <main id="main" class="system-app">
+    <p class="sr-only">Interactive three-dimensional map of the solar system. All of its
+    information is also available without the map: use the travel buttons (Overview, Sun,
+    and Mercury through Neptune) to choose a body, and its full dossier — overview, facts,
+    strange-but-true details and mission history — appears in the dossier panel. The time
+    slider changes the simulation speed.</p>
     <div id="orrery3d" aria-label="Interactive 3D solar system. Drag to orbit, scroll to zoom, click a planet to travel to it."></div>
 
     <!-- dossier: floating corner card, collapsible -->

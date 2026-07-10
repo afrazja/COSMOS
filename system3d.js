@@ -363,10 +363,10 @@ function init() {
   function renderPanel(b) {
     const deep = DEEP[b.key];
     const tabs = deep
-      ? '<div class="panel-tabs" role="tablist">' +
-        '<button class="ptab on" data-t="over">Overview</button>' +
-        '<button class="ptab" data-t="weird">Strange but true</button>' +
-        '<button class="ptab" data-t="miss">Missions</button>' +
+      ? '<div class="panel-tabs" role="tablist" aria-label="Dossier sections">' +
+        '<button class="ptab on" role="tab" aria-selected="true" data-t="over">Overview</button>' +
+        '<button class="ptab" role="tab" aria-selected="false" data-t="weird">Strange but true</button>' +
+        '<button class="ptab" role="tab" aria-selected="false" data-t="miss">Missions</button>' +
         '</div>'
       : '';
 
@@ -392,7 +392,11 @@ function init() {
           b.facts.map((f) => '<li><strong>' + f[0] + '</strong><span>' + f[1] + '</span></li>').join('') +
           '</ul>';
       }
-      panel.querySelectorAll('.ptab').forEach((el) => el.classList.toggle('on', el.dataset.t === t));
+      panel.querySelectorAll('.ptab').forEach((el) => {
+        const on = el.dataset.t === t;
+        el.classList.toggle('on', on);
+        el.setAttribute('aria-selected', String(on));
+      });
     }
 
     panel.querySelectorAll('.ptab').forEach((el) =>

@@ -68,18 +68,28 @@
   });
 
   /* ---------- lightbox ---------- */
+  const btnClose = document.getElementById('lb-close');
+  const btnPrev = document.getElementById('lb-prev');
+  const btnNext = document.getElementById('lb-next');
+  let lastFocus = null;
+
   function open(idx) {
     current = idx;
     show();
+    lastFocus = document.activeElement; // restore focus here on close
     lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => lightbox.classList.add('open'));
+    requestAnimationFrame(() => {
+      lightbox.classList.add('open');
+      btnClose.focus();
+    });
   }
 
   function close() {
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
     setTimeout(() => { lightbox.hidden = true; }, 250);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
   function show() {
@@ -113,9 +123,9 @@
     show();
   }
 
-  document.getElementById('lb-close').addEventListener('click', close);
-  document.getElementById('lb-prev').addEventListener('click', () => step(-1));
-  document.getElementById('lb-next').addEventListener('click', () => step(1));
+  btnClose.addEventListener('click', close);
+  btnPrev.addEventListener('click', () => step(-1));
+  btnNext.addEventListener('click', () => step(1));
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) close();
   });
@@ -124,5 +134,15 @@
     if (e.key === 'Escape') close();
     if (e.key === 'ArrowLeft') step(-1);
     if (e.key === 'ArrowRight') step(1);
+    // trap Tab inside the dialog while it's open
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const cycle = [btnClose, btnPrev, btnNext];
+      const i = cycle.indexOf(document.activeElement);
+      const n = e.shiftKey
+        ? (i <= 0 ? cycle.length - 1 : i - 1)
+        : (i === -1 || i === cycle.length - 1 ? 0 : i + 1);
+      cycle[n].focus();
+    }
   });
 })();

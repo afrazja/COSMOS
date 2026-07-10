@@ -28,6 +28,8 @@
 </head>
 <body>
 
+
+  <a class="skip-link" href="#main">Skip to content</a>
   <!-- Scroll progress bar -->
   <div id="progress" aria-hidden="true"></div>
 
@@ -99,7 +101,7 @@
     </a>
   </header>
 
-  <main>
+  <main id="main">
     <!-- ============ NEBULAE ============ -->
     <section class="section" id="nebulae">
       <div class="section-head reveal">
@@ -319,6 +321,8 @@
     <!-- ============ SPACESHIP LANDING — pinned motion graphic ============ -->
     <section class="landing-pin" id="landing">
       <div class="landing-stage">
+        <p class="sr-only">Animation: a robotic spacecraft descends through the Martian sky
+        on rocket power, kicks up dust, and lands safely on the surface of Mars.</p>
         <!-- scroll-scrubbed landing footage; the composited scene below
              stays as an automatic fallback if the video can't load -->
         <video id="landing-video" src="assets/landing2-scrub.mp4" muted playsinline preload="metadata" aria-hidden="true"></video>
