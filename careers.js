@@ -158,8 +158,10 @@
   const grid = document.getElementById('career-grid');
   if (grid) {
     for (const c of CAREERS) {
+      // no 'reveal' class: these are created after the scroll-reveal
+      // observer has already run, so they'd stay invisible forever
       const el = document.createElement('article');
-      el.className = 'career-card reveal';
+      el.className = 'career-card';
       el.id = 'career-' + c.key;
       el.innerHTML =
         '<div class="career-head"><span class="career-icon">' + c.icon + '</span>' +

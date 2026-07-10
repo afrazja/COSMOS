@@ -144,6 +144,7 @@
     { threshold: 0.6 }
   );
   document.querySelectorAll('.stat-num').forEach((el) => {
+    if (!el.dataset.count) return; // static stat — leave its text alone
     if (reduceMotion) {
       el.textContent = el.dataset.count + (el.dataset.suffix || '');
     } else {
