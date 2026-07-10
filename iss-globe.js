@@ -1,13 +1,15 @@
 /* ============================================================
-   Tonight's Sky — ISS tracker globe (Three.js)
-   The Earth from earth.js, plus a pulsing red beacon at the live
-   ISS position (fed by 'iss-update' events from sky.js). The globe
-   eases around so the station stays facing the viewer; drag to
-   look elsewhere and it resumes tracking a few seconds later.
+   Tonight's Sky — ISS tracker globe
+   The shared Earth from three-common.js, plus a pulsing red
+   beacon at the live ISS position (fed by 'iss-update' events
+   from sky.js). The globe eases around so the station stays
+   facing the viewer; drag to look elsewhere and tracking
+   resumes a few seconds later.
    ============================================================ */
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { makeRenderer, gateVisibility, installSquareResize, buildEarth, addSunlight } from './three-common.js';
 
 const container = document.getElementById('iss-globe');
 if (container) init(container);
@@ -17,80 +19,22 @@ function init(container) {
 
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer = makeRenderer(container);
   } catch (e) {
     document.getElementById('iss').style.display = 'none';
     return;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  container.appendChild(renderer.domElement);
-
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
   camera.position.set(0, 0.2, 3.05);
 
-  const sun = new THREE.DirectionalLight(0xffffff, 2.1);
-  sun.position.set(-4, 1.5, 2.5);
-  scene.add(sun);
-  scene.add(new THREE.AmbientLight(0x445588, 0.6));
-
-  const loader = new THREE.TextureLoader();
-  const mapDay = loader.load('assets/3d/earth_atmos.jpg');
-  mapDay.colorSpace = THREE.SRGBColorSpace;
+  addSunlight(scene, 2.1);
 
   /* the pivot carries earth + beacon so tracking rotation is one value */
   const pivot = new THREE.Group();
   scene.add(pivot);
-
-  const earth = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 64, 64),
-    new THREE.MeshPhongMaterial({
-      map: mapDay,
-      normalMap: loader.load('assets/3d/earth_normal.jpg'),
-      normalScale: new THREE.Vector2(0.85, 0.85),
-      specularMap: loader.load('assets/3d/earth_specular.jpg'),
-      specular: new THREE.Color(0x333344),
-      shininess: 14
-    })
-  );
-  pivot.add(earth);
-
-  const clouds = new THREE.Mesh(
-    new THREE.SphereGeometry(1.012, 64, 64),
-    new THREE.MeshLambertMaterial({
-      map: loader.load('assets/3d/earth_clouds.png'),
-      transparent: true,
-      opacity: 0.45,
-      depthWrite: false
-    })
-  );
-  pivot.add(clouds);
-
-  const atmosphere = new THREE.Mesh(
-    new THREE.SphereGeometry(1.16, 64, 64),
-    new THREE.ShaderMaterial({
-      side: THREE.BackSide,
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      vertexShader: `
-        varying vec3 vNormal;
-        void main() {
-          vNormal = normalize(normalMatrix * normal);
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vNormal;
-        void main() {
-          float rim = pow(0.62 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.0);
-          gl_FragColor = vec4(0.35, 0.62, 1.0, 1.0) * rim;
-        }
-      `
-    })
-  );
-  scene.add(atmosphere);
+  const { clouds } = buildEarth(pivot, { radius: 1, cloudOpacity: 0.45 });
 
   /* ---------- ISS beacon: dot + pulsing halo ring ---------- */
   const beacon = new THREE.Group();
@@ -144,24 +88,12 @@ function init(container) {
     resumeTimer = setTimeout(() => { userHolding = false; }, 4000);
   });
 
-  function resize() {
-    const size = Math.min(container.clientWidth, 620);
-    renderer.setSize(size, size);
-    camera.aspect = 1;
-    camera.updateProjectionMatrix();
-  }
-  resize();
-  new ResizeObserver(resize).observe(container);
-
-  let visible = false;
-  new IntersectionObserver(
-    (entries) => { visible = entries[0].isIntersecting; },
-    { rootMargin: '120px' }
-  ).observe(container);
+  installSquareResize(container, renderer, camera, 620);
+  const isVisible = gateVisibility(container);
 
   let t = 0;
   renderer.setAnimationLoop(() => {
-    if (!visible) return;
+    if (!isVisible()) return;
     t += 0.016;
 
     // ease the pivot so the beacon faces the camera (unless the user is looking around)

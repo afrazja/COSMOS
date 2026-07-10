@@ -1,6 +1,24 @@
 /* ============================================================
-   COSMOS — space landing page
+   COSMOS — one stylesheet for the whole site
    Palette: deep space ink, nebula violet/teal, ember orange
+
+   TABLE OF CONTENTS (search for the ===== banner of each):
+     1. Variables, reset, a11y utilities (.sr-only, .skip-link)
+     2. Scroll progress, starfield, typography, reveal-on-scroll
+     3. NAV (+ hamburger menu, mobile scrim)
+     4. HERO (home) + warp canvas + stats
+     5. Shared sections, nebula cards (+ AI labeling)
+     6. PLANETS pinned journey (+ skip-pin)
+     7. MOON section, 3D EARTH section (+ aurora blobs)
+     8. SPACESHIP LANDING (video + composited fallback, HUD)
+     9. EXPLORE / astronaut
+    10. TONIGHT'S SKY page (APOD, ISS, launch board)
+    11. THE JOURNEY timeline (medallions, rocket, expanders)
+    12. THE SYSTEM legacy widget styles + APP MODE (fullscreen)
+    13. THE GALLERY (masonry, lightbox + facts)
+    14. YOUR PLACE IN SPACE (quiz, career cards, ladder)
+    15. ABOUT page, 404 page
+    16. FOOTER + responsive blocks
    ============================================================ */
 
 :root {
