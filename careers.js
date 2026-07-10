@@ -9,8 +9,8 @@
   /* ---------- the ten careers ---------- */
   const CAREERS = [
     {
-      key: 'rocket', photo: 'assets/careers/rocket.webp', photoCap: 'A real flight engine on the move at NASA’s test stand.', icon: '🚀', title: 'Rocket Engineer',
-      tag: 'Builds the machines that leave Earth',
+      key: 'rocket', photo: 'assets/careers/rocket.webp', photoCap: 'A real flight engine on the move at NASA’s test stand.', icon: '🚀', title: 'Aerospace / Propulsion Engineer',
+      tag: 'The rocket builder — makes the machines that leave Earth',
       wow: 'Modern boosters fly to space, come back, and are caught in mid-air by giant metal arms — engineers designed every millimeter of that.',
       subjects: ['Math', 'Physics', 'Tech / shop class'],
       start: ['Build and fly a model rocket', 'Play Kerbal Space Program', 'Take apart something broken to see how it works'],
@@ -54,7 +54,7 @@
       path: 'Geology, chemistry or physics, then planetary science'
     },
     {
-      key: 'code', photo: 'assets/careers/code.webp', photoCap: 'Katherine Johnson — the mathematician who calculated Apollo’s path.', icon: '💻', title: 'Space Software Engineer',
+      key: 'code', photo: 'assets/careers/code.webp', photoCap: 'Katherine Johnson — the mathematician who calculated Apollo’s path.', icon: '💻', title: 'Flight Software Engineer',
       tag: 'Writes the code that flies',
       wow: 'The code that landed Apollo on the Moon, printed out, stood taller than the woman who led its creation — and it never once crashed.',
       subjects: ['Computer science', 'Math', 'Logic puzzles'],
@@ -72,8 +72,8 @@
       path: 'Medical degree, then aerospace medicine'
     },
     {
-      key: 'suit', photo: 'assets/careers/suit.webp', photoCap: 'John Glenn being suited up, 1962 — read the name tag.', icon: '🧑‍🚀', title: 'Spacesuit Designer',
-      tag: 'Designs one-person spaceships you can wear',
+      key: 'suit', photo: 'assets/careers/suit.webp', photoCap: 'John Glenn being suited up, 1962 — read the name tag.', icon: '🧑‍🚀', title: 'Spacesuit Systems Engineer',
+      tag: 'The suit designer — one-person spaceships you can wear',
       wow: 'A spacesuit has 16 layers and its own life support — the Apollo suits were sewn by hand, by seamstresses, to a tolerance of 0.4 millimeters.',
       subjects: ['Art & design', 'Physics', 'Textiles / making things'],
       start: ['Sketch inventions in a notebook', 'Learn to sew or 3D-print', 'Redesign an everyday object to work in zero gravity'],
@@ -90,8 +90,8 @@
       path: 'Biology or chemistry degree, then astrobiology research'
     },
     {
-      key: 'story', photo: 'assets/gallery/pillars-webb.webp', photoCap: 'Raw telescope data, turned into wonder — by an imaging artist.', icon: '🎨', title: 'Mission Storyteller',
-      tag: 'Turns data into wonder',
+      key: 'story', photo: 'assets/gallery/pillars-webb.webp', photoCap: 'Raw telescope data, turned into wonder — by an imaging artist.', icon: '🎨', title: 'Science Communicator',
+      tag: 'The mission storyteller — turns data into wonder',
       wow: 'The Webb telescope’s famous pictures aren’t taken in color — imaging artists translate invisible infrared into the images that make the world gasp.',
       subjects: ['Art', 'Writing', 'Media & languages'],
       start: ['Explain something amazing to a friend in one minute', 'Make a video or drawing about your favorite planet', 'Start a science corner in the school paper'],
@@ -197,13 +197,31 @@
   const card = document.getElementById('quiz-card');
   if (!card) return;
 
+  // two neighbours shown alongside each quiz result
+  const RELATED = {
+    rocket: ['robot', 'control'], robot: ['rocket', 'code'], control: ['code', 'doctor'],
+    astro: ['planet', 'code'], planet: ['astro', 'bio'], code: ['robot', 'control'],
+    doctor: ['bio', 'suit'], suit: ['rocket', 'doctor'], bio: ['planet', 'doctor'],
+    story: ['astro', 'planet']
+  };
+
   let step = 0;
+  let history = []; // chosen option index per answered question (for Back)
   const scores = {};
+
+  function resetGrid() {
+    document.querySelectorAll('.career-card').forEach((el) => {
+      el.classList.remove('match', 'career-hidden');
+    });
+    const btn = document.getElementById('show-all-careers');
+    if (btn) btn.remove();
+  }
 
   function startQuiz() {
     step = 0;
+    history = [];
     for (const c of CAREERS) scores[c.key] = 0;
-    document.querySelectorAll('.career-card.match').forEach((el) => el.classList.remove('match'));
+    resetGrid();
     renderQuestion();
   }
 
@@ -211,6 +229,7 @@
     const q = QUESTIONS[step];
     card.innerHTML =
       '<div class="quiz-progress">' +
+      (step > 0 ? '<button class="quiz-back" id="quiz-back" aria-label="Back to previous question">← Back</button>' : '') +
       QUESTIONS.map((_, i) =>
         '<span class="quiz-dot' + (i < step ? ' done' : i === step ? ' now' : '') + '"></span>'
       ).join('') +
@@ -222,12 +241,22 @@
 
     card.querySelectorAll('.quiz-opt').forEach((btn) =>
       btn.addEventListener('click', () => {
-        for (const key of q.opts[parseInt(btn.dataset.i, 10)][1]) scores[key] += 1;
+        const i = parseInt(btn.dataset.i, 10);
+        history.push(i);
+        for (const key of q.opts[i][1]) scores[key] += 1;
         step += 1;
         if (step < QUESTIONS.length) renderQuestion();
         else renderResult();
       })
     );
+
+    const back = document.getElementById('quiz-back');
+    if (back) back.addEventListener('click', () => {
+      step -= 1;
+      const undone = history.pop();
+      for (const key of QUESTIONS[step].opts[undone][1]) scores[key] -= 1;
+      renderQuestion();
+    });
   }
 
   function renderResult() {
@@ -245,11 +274,34 @@
       '<button class="btn btn-ghost" id="quiz-retake">Try again</button>' +
       '</div></div>';
 
+    // the result shapes the page: your match + two related roles up front,
+    // everything else behind "Explore every career"
+    const keep = [best.key].concat(RELATED[best.key] || []);
+    let hiddenCount = 0;
+    document.querySelectorAll('.career-card').forEach((el) => {
+      const key = el.id.replace('career-', '');
+      const hide = !keep.includes(key);
+      el.classList.toggle('career-hidden', hide);
+      if (hide) hiddenCount += 1;
+    });
     const target = document.getElementById('career-' + best.key);
     if (target) {
       target.classList.add('match', 'open'); // open = expanded on mobile too
       const head = target.querySelector('.career-head');
       if (head) head.setAttribute('aria-expanded', 'true');
+      if (grid) grid.prepend(target); // your match leads the grid
+    }
+    if (grid && hiddenCount && !document.getElementById('show-all-careers')) {
+      const show = document.createElement('button');
+      show.id = 'show-all-careers';
+      show.className = 'btn btn-ghost show-all-careers';
+      show.textContent = 'Explore every career (+' + hiddenCount + ' more)';
+      show.addEventListener('click', () => {
+        document.querySelectorAll('.career-card.career-hidden')
+          .forEach((el) => el.classList.remove('career-hidden'));
+        show.remove();
+      });
+      grid.after(show);
     }
     document.getElementById('quiz-retake').addEventListener('click', startQuiz);
   }

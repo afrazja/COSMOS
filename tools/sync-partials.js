@@ -63,7 +63,7 @@ const PAGES = [
     quote: '"Somewhere, something incredible is waiting to be known." — Carl Sagan',
     fine: 'Photography: NASA · ESA · CSA · STScI — Hubble &amp; James Webb space telescopes' },
   { file: 'careers.html', cta: ['#quiz', 'Take the Quiz'],
-    quote: '"Nothing is impossible for the person who doesn\'t have to do it themselves — so learn to do it yourself." — Mission Control proverb',
+    quote: '"Never be limited by other people\'s limited imaginations." — Dr. Mae Jemison, astronaut',
     fine: 'Career facts checked against NASA, ESA and agency sources · ' + IMAGERY },
   { file: 'about.html', cta: ['/careers', 'Find Your Place'],
     quote: '"The map is mostly blank. That\'s the good news." — Afraz',
