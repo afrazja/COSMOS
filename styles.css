@@ -1551,6 +1551,29 @@ body.no-pin .ship-shadow { opacity: 0.55; }
   color: var(--teal);
 }
 
+/* "the full story" expanders */
+.milestone-more { margin-top: 0.9rem; border-top: 1px solid rgba(167, 139, 250, 0.14); }
+.milestone-more summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.7rem 0 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+  transition: color 0.25s ease;
+}
+.milestone-more summary::-webkit-details-marker { display: none; }
+.milestone-more summary::after { content: ' ▾'; }
+.milestone-more[open] summary::after { content: ' ▴'; }
+.milestone-more summary:hover { color: var(--teal); }
+.milestone-more p {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin-top: 0.7rem;
+}
+
 .milestone-future .milestone-year {
   background: linear-gradient(100deg, var(--teal), var(--ember));
   -webkit-background-clip: text;
@@ -1956,6 +1979,45 @@ body.app-mode #nav {
 }
 .app-panel.collapsed .app-panel-body { display: none; }
 .app-panel .panel-facts li { background: rgba(5, 6, 15, 0.5); }
+
+/* dossier tabs */
+.panel-tabs { display: flex; gap: 0.4rem; margin: 0.7rem 0 0.9rem; flex-wrap: wrap; }
+.ptab {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  background: none;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.ptab:hover { color: var(--text); }
+.ptab.on { color: var(--teal); border-color: rgba(94, 234, 212, 0.55); }
+.panel-list { list-style: none; margin: 0; padding: 0; }
+.panel-list li {
+  font-size: 0.87rem;
+  color: var(--text-dim);
+  padding: 0.5rem 0 0.5rem 1.1rem;
+  position: relative;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+}
+.panel-list li:last-child { border-bottom: none; }
+.panel-list li::before { content: '✦'; position: absolute; left: 0; color: var(--teal); font-size: 0.7rem; top: 0.65rem; }
+.panel-who {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--ember);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(251, 146, 60, 0.4);
+}
+.panel-who:hover { border-bottom-color: var(--ember); }
 .app-panel h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
 .app-panel .panel-desc { font-size: 0.88rem; }
 .app-panel .panel-media { display: none; } /* the live view IS the media now */

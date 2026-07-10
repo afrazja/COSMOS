@@ -68,6 +68,127 @@ function init() {
   ];
   BODIES.forEach((b, i) => { b.angle = (i * 2.399963) % (Math.PI * 2); });
 
+  /* ---------- deep-dive content per body ---------- */
+  const DEEP = {
+    sun: {
+      weird: [
+        'About 1.3 million Earths would fit inside it — and it is 99.86% of everything in the solar system.',
+        'Light born in its core spends up to 100,000 years fighting its way out — then just 8 minutes reaching you.',
+        'It gets about 1% brighter every 100 million years. Very slowly, the Sun is turning up the heat.'
+      ],
+      missions: [
+        'Parker Solar Probe (2018–) — flew through the Sun’s outer atmosphere, the fastest human-made object ever.',
+        'SOHO (1995–) — has watched the Sun for 30 years and accidentally discovered 5,000+ comets.',
+        'SDO (2010–) — photographs the whole Sun every 0.75 seconds.'
+      ],
+      who: ['Heliophysicists and astrophysicists study our star', 'astro']
+    },
+    mercury: {
+      weird: [
+        'A single solar day on Mercury (sunrise to sunrise) lasts 176 Earth days — two of its whole years.',
+        'Despite roasting by day, there is water ice in its permanently shadowed polar craters.',
+        'The whole planet is shrinking as its huge iron core cools — its crust has wrinkled like a drying apple.'
+      ],
+      missions: [
+        'Mariner 10 (1974) — first flybys, mapped less than half the surface.',
+        'MESSENGER (2011–2015) — first to orbit; found the polar ice.',
+        'BepiColombo (arriving 2026) — Europe and Japan’s joint mission, en route now.'
+      ],
+      who: ['Planetary scientists decode worlds like this', 'planet']
+    },
+    venus: {
+      weird: [
+        'Its day is longer than its year — and it spins backwards, so the Sun rises in the west.',
+        'On the highest mountains it "snows" metal — minerals that vaporize in the hot lowlands and frost out up high.',
+        'Surface pressure equals being 900 meters underwater on Earth; the first landers were crushed in about an hour.'
+      ],
+      missions: [
+        'Venera program (1961–1984) — Soviet landers sent the only photos ever taken from the surface.',
+        'Magellan (1990–1994) — radar-mapped 98% of the planet through the clouds.',
+        'DAVINCI & EnVision (2030s) — NASA and ESA are going back to ask if Venus was once habitable.'
+      ],
+      who: ['Planetary scientists and atmosphere experts study Venus', 'planet']
+    },
+    earth: {
+      weird: [
+        'Earth is not a sphere — spin flattens it, so you are ~21 km farther from the center at the equator.',
+        'The days are getting longer: the Moon’s pull slows our spin by about 2 milliseconds per century.',
+        'Earth’s outermost atmosphere (the geocorona) extends beyond the Moon — Apollo crews technically never left it.'
+      ],
+      missions: [
+        'Thousands of satellites watch Earth right now — weather, climate, crops, oceans.',
+        'Landsat (1972–) — the longest continuous record of our changing surface.',
+        'The ISS (2000–) — a laboratory that circles Earth 16 times a day.'
+      ],
+      who: ['Earth scientists use space to understand home', 'planet']
+    },
+    mars: {
+      weird: [
+        'Olympus Mons is so wide that standing on its slope, you couldn’t tell it’s a mountain — it curves past the horizon.',
+        'Sunsets on Mars are blue — fine dust scatters the light exactly opposite to Earth’s sky.',
+        'Mars once had rivers, lakes and maybe a northern ocean. The riverbeds are still there, dry for 3 billion years.'
+      ],
+      missions: [
+        'Viking 1 & 2 (1976) — first successful landings, first search for life.',
+        'Curiosity (2012–) & Perseverance (2021–) — nuclear-powered rovers still exploring today.',
+        'Ingenuity (2021–2024) — the first aircraft on another world; planned for 5 flights, flew 72.'
+      ],
+      who: ['Astrobiologists lead the hunt for past Martian life', 'bio']
+    },
+    jupiter: {
+      weird: [
+        'The Great Red Spot has been shrinking for a century — a storm older than any nation watching it.',
+        'Deep inside, hydrogen is squeezed into a metal that flows — the engine of a magnetic field 20,000× Earth’s.',
+        'Its moon Europa likely hides more liquid water than all of Earth’s oceans combined.'
+      ],
+      missions: [
+        'Galileo (1995–2003) — first orbiter; dropped a probe into the clouds.',
+        'Juno (2016–) — orbiting now, photographing storms the size of continents.',
+        'Europa Clipper & JUICE (arriving ~2030) — going to the ocean moons, hunting habitability.'
+      ],
+      who: ['Planetary scientists study giants and their ocean moons', 'planet']
+    },
+    saturn: {
+      weird: [
+        'A permanent hexagonal storm sits on its north pole — six-sided, larger than Earth, and nobody fully knows why.',
+        'The rings may be temporary: "ring rain" is slowly pulling them into the planet.',
+        'Its moon Titan has rain, rivers and seas — of liquid methane at −179 °C.'
+      ],
+      missions: [
+        'Cassini–Huygens (2004–2017) — 13 years in orbit; Huygens landed on Titan, the farthest landing ever.',
+        'The Grand Finale (2017) — Cassini dove between planet and rings 22 times, then burned up on purpose.',
+        'Dragonfly (2030s) — a nuclear drone that will fly across Titan’s dunes.'
+      ],
+      who: ['Planetary scientists — Cassini’s imaging team was led by one', 'planet']
+    },
+    uranus: {
+      weird: [
+        'It rolls around the Sun on its side — each pole gets 42 years of daylight, then 42 years of night.',
+        'Deep inside, pressure may squeeze carbon into diamond rain.',
+        'Its clouds contain hydrogen sulfide — the rotten-egg gas. Uranus, scientifically, stinks.'
+      ],
+      missions: [
+        'Voyager 2 (1986) — humanity’s only visit: a single 5½-hour flyby.',
+        'A flagship Uranus orbiter is the top-priority planetary mission recommended for the 2030s.',
+        'Whoever flies it is in school right now.'
+      ],
+      who: ['Ice-giant specialists — the least-explored frontier', 'astro']
+    },
+    neptune: {
+      weird: [
+        'It radiates 2.6× more heat than it receives from the Sun — an internal furnace no one has fully explained.',
+        'Its big moon Triton orbits backwards — a captured world that will one day be torn into a giant ring.',
+        'Since its discovery in 1846, Neptune has completed just one full orbit (in 2011).'
+      ],
+      missions: [
+        'Voyager 2 (1989) — the only visit; discovered the Great Dark Spot and Triton’s nitrogen geysers.',
+        'Every picture of Neptune in your textbooks comes from that single flyby — or from telescopes.',
+        'No mission is currently scheduled. The next one might be yours.'
+      ],
+      who: ['Planetary scientists — Neptune was found by a mathematician', 'planet']
+    }
+  };
+
   const EARTH_ORBIT = 10.8;
   const EARTH_PERIOD_S = 36;
   const DAYS_PER_SEC_1X = 365.25 / EARTH_PERIOD_S;
@@ -240,14 +361,44 @@ function init() {
 
   /* ---------- dossier panel + travel chips ---------- */
   function renderPanel(b) {
+    const deep = DEEP[b.key];
+    const tabs = deep
+      ? '<div class="panel-tabs" role="tablist">' +
+        '<button class="ptab on" data-t="over">Overview</button>' +
+        '<button class="ptab" data-t="weird">Strange but true</button>' +
+        '<button class="ptab" data-t="miss">Missions</button>' +
+        '</div>'
+      : '';
+
     panel.innerHTML =
-      '<div class="panel-media"><div class="panel-view-note">◉ live view — drag the map to circle it</div></div>' +
       '<p class="planet-index">' + b.type + '</p>' +
       '<h3>' + b.name + '</h3>' +
-      '<p class="panel-desc">' + b.desc + '</p>' +
-      '<ul class="facts panel-facts">' +
-      b.facts.map((f) => '<li><strong>' + f[0] + '</strong><span>' + f[1] + '</span></li>').join('') +
-      '</ul>';
+      tabs +
+      '<div id="panel-tabbody"></div>' +
+      (deep ? '<a class="panel-who" href="/careers#career-' + deep.who[1] + '">' + deep.who[0] + ' →</a>' : '');
+
+    const body = panel.querySelector('#panel-tabbody');
+
+    function showTab(t) {
+      if (t === 'weird' && deep) {
+        body.innerHTML = '<ul class="panel-list">' +
+          deep.weird.map((s) => '<li>' + s + '</li>').join('') + '</ul>';
+      } else if (t === 'miss' && deep) {
+        body.innerHTML = '<ul class="panel-list">' +
+          deep.missions.map((s) => '<li>' + s + '</li>').join('') + '</ul>';
+      } else {
+        body.innerHTML = '<p class="panel-desc">' + b.desc + '</p>' +
+          '<ul class="facts panel-facts">' +
+          b.facts.map((f) => '<li><strong>' + f[0] + '</strong><span>' + f[1] + '</span></li>').join('') +
+          '</ul>';
+      }
+      panel.querySelectorAll('.ptab').forEach((el) => el.classList.toggle('on', el.dataset.t === t));
+    }
+
+    panel.querySelectorAll('.ptab').forEach((el) =>
+      el.addEventListener('click', () => showTab(el.dataset.t))
+    );
+    showTab('over');
   }
 
   const chipsWrap = document.getElementById('planet-chips');
