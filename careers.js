@@ -157,6 +157,8 @@
   /* ---------- render career cards ---------- */
   const grid = document.getElementById('career-grid');
   if (grid) {
+    const isMobile = () => window.matchMedia('(max-width: 720px)').matches;
+
     for (const c of CAREERS) {
       // no 'reveal' class: these are created after the scroll-reveal
       // observer has already run, so they'd stay invisible forever
@@ -164,16 +166,29 @@
       el.className = 'career-card';
       el.id = 'career-' + c.key;
       el.innerHTML =
-        '<div class="career-head"><span class="career-icon">' + c.icon + '</span>' +
-        '<div><h3>' + c.title + '</h3><p class="career-tag">' + c.tag + '</p></div></div>' +
+        '<button type="button" class="career-head" aria-expanded="' + String(!isMobile()) + '">' +
+        '<span class="career-icon">' + c.icon + '</span>' +
+        '<span class="career-headtext"><span class="career-title">' + c.title + '</span>' +
+        '<span class="career-tag">' + c.tag + '</span></span>' +
+        '<span class="career-chevron" aria-hidden="true">▾</span>' +
+        '</button>' +
+        '<div class="career-body">' +
         '<p class="career-wow">' + c.wow + '</p>' +
         '<div class="career-block"><h4>School subjects that matter</h4><ul>' +
         c.subjects.map((s) => '<li>' + s + '</li>').join('') + '</ul></div>' +
         '<div class="career-block"><h4>Start this week</h4><ul>' +
         c.start.map((s) => '<li>' + s + '</li>').join('') + '</ul></div>' +
         '<p class="career-hero"><strong>Look up:</strong> ' + c.hero + '</p>' +
-        '<p class="career-path">' + c.path + '</p>';
+        '<p class="career-path">' + c.path + '</p>' +
+        '</div>';
       grid.appendChild(el);
+
+      // on phones the cards are tap-to-open accordions
+      el.querySelector('.career-head').addEventListener('click', () => {
+        if (!isMobile()) return;
+        const open = el.classList.toggle('open');
+        el.querySelector('.career-head').setAttribute('aria-expanded', String(open));
+      });
     }
   }
 
@@ -230,7 +245,11 @@
       '</div></div>';
 
     const target = document.getElementById('career-' + best.key);
-    if (target) target.classList.add('match');
+    if (target) {
+      target.classList.add('match', 'open'); // open = expanded on mobile too
+      const head = target.querySelector('.career-head');
+      if (head) head.setAttribute('aria-expanded', 'true');
+    }
     document.getElementById('quiz-retake').addEventListener('click', startQuiz);
   }
 
