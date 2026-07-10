@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — COSMOS</title>
+  <meta name="description" content="Who built COSMOS and why: a letter from Afraz on space, weak education, strong myths, and a platform for the people who'll fix both." />
+  <link rel="canonical" href="https://cosmos-space-one.vercel.app/about" />
+  <meta name="theme-color" content="#05060f" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="COSMOS" />
+  <meta property="og:title" content="About — COSMOS" />
+  <meta property="og:description" content="Who built COSMOS and why: a letter from Afraz on space, weak education, strong myths, and a platform for the people who'll fix both." />
+  <meta property="og:url" content="https://cosmos-space-one.vercel.app/about" />
+  <meta property="og:image" content="https://cosmos-space-one.vercel.app/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About — COSMOS" />
+  <meta name="twitter:description" content="Who built COSMOS and why: a letter from Afraz on space, weak education, strong myths, and a platform for the people who'll fix both." />
+  <meta name="twitter:image" content="https://cosmos-space-one.vercel.app/og-card.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="progress" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <nav id="nav">
+    <a class="logo" href="/">
+      <span class="logo-orb" aria-hidden="true"></span>
+      COSMOS
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/system">The System</a></li>
+      <li><a href="/journey">The Journey</a></li>
+      <li><a href="/gallery">Gallery</a></li>
+      <li><a href="/sky" class="nav-live">Tonight's Sky<span class="live-dot" aria-hidden="true"></span></a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="/careers" class="nav-cta">Find Your Place</a>
+  </nav>
+
+  <main class="sky-page">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="sky-hero hero-left about-hero">
+      <p class="eyebrow">The human behind it</p>
+      <h1>Why COSMOS <em>exists</em></h1>
+    </header>
+
+    <!-- ============ THE LETTER ============ -->
+    <section class="section about-section">
+      <article class="about-letter reveal">
+        <p class="about-hi">Hi — I'm Afraz.</p>
+        <p>
+          I'm an entrepreneur, and for as long as I can remember I've been fascinated by
+          outer space and by one question in particular: <em>is there life beyond our planet?</em>
+          I've watched more documentaries than I can count and read stacks of novels about
+          humans pushing out into the dark. Somewhere along the way, that fascination turned
+          into two convictions.
+        </p>
+        <p>
+          <strong>First: we have barely started.</strong> For all our rockets, rovers and
+          telescopes, humanity still needs to discover far, far more before we can truly
+          reach the distances we dream about. The map is mostly blank. That's not
+          discouraging — it means the biggest chapters haven't been written yet, and the
+          people who will write them are alive right now.
+        </p>
+        <p>
+          <strong>Second: the way we teach space is weak — and the myths are strong.</strong>
+          Most people meet the universe through headlines and movie physics. Real space
+          education, the kind that makes a young person say <em>"I could work on that"</em>,
+          is rare. I believe that gap is costing us explorers.
+        </p>
+        <p>
+          COSMOS is my contribution to closing it: a place where the universe is shown
+          honestly and beautifully — real NASA and ESA imagery, real numbers, and where we
+          use AI-generated art, we say so — built especially for young people who feel the
+          pull but haven't been told the path exists. That's why the site doesn't end with
+          a pretty picture; it ends with <a class="inline-link" href="/careers">a page about
+          finding your own place in space</a>.
+        </p>
+        <p>
+          <strong>And this is only step one.</strong> What I really want to build is a
+          platform — a place where curious people share their thinking, challenge the myths,
+          contribute ideas toward the discoveries ahead, and give each other the motivation
+          to attempt big things. A crew, not an audience. If that excites you, I'd genuinely
+          like to hear from you.
+        </p>
+        <p class="about-sign">— Afraz</p>
+        <a class="btn btn-primary about-cta" href="mailto:afz.javan@gmail.com?subject=COSMOS">
+          Tell me one thing you'd want on that platform ✉
+        </a>
+      </article>
+    </section>
+
+    <!-- ============ WHAT THIS SITE STANDS FOR ============ -->
+    <section class="section">
+      <div class="section-head reveal">
+        <p class="eyebrow">The three rules</p>
+        <h2>What COSMOS <em>stands</em> for</h2>
+      </div>
+      <div class="about-pillars reveal">
+        <div class="about-pillar">
+          <h3>🔭 Honest first</h3>
+          <p>
+            Real photography and real numbers, checked against NASA, ESA and agency sources.
+            Where we use AI-generated concept art, it's labeled — always. Wonder doesn't
+            need exaggeration.
+          </p>
+        </div>
+        <div class="about-pillar">
+          <h3>🌱 Aimed at the young</h3>
+          <p>
+            Every page tries to leave a young visitor with the same feeling: <em>this is
+            real, it's still beginning, and there's a seat with your name on it.</em>
+            Careers, subjects, first steps — not just pretty pictures.
+          </p>
+        </div>
+        <div class="about-pillar">
+          <h3>🚀 Built together</h3>
+          <p>
+            The future of this project is a community platform: sharing ideas, breaking
+            myths, and motivating each other toward the discoveries ahead. It starts with
+            an email — yours.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WAS MADE ============ -->
+    <section class="section">
+      <div class="section-head reveal">
+        <p class="eyebrow">Full transparency</p>
+        <h2>How this site was <em>made</em></h2>
+      </div>
+      <div class="about-letter reveal">
+        <p>
+          COSMOS was built in a matter of days as a collaboration between me and
+          <strong>Claude</strong>, an AI assistant by Anthropic — I set the vision, direction
+          and taste (and generated the concept artwork with AI image tools); Claude wrote the
+          code and helped shape the words. I'm sharing that openly because it's part of the
+          point: the tools for building ambitious things have never been this accessible.
+          If a non-native English speaker with a laptop can ship this in days, imagine what
+          you could build.
+        </p>
+        <p class="about-sources">
+          Photography: NASA / ESA / CSA / STScI archives (public domain &amp; CC) · Live data:
+          NASA APOD, wheretheiss.at, The Space Devs · AI concept art: labeled wherever it appears.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="/">
+        <span class="logo-orb" aria-hidden="true"></span>
+        COSMOS
+      </a>
+      <p class="footer-quote">"The map is mostly blank. That's the good news." — Afraz</p>
+      <a class="footer-about" href="/about">About this site &amp; the human behind it</a>
+      <a class="footer-contact" href="mailto:afz.javan@gmail.com">✉&nbsp;afz.javan@gmail.com</a>
+      <p class="footer-fine">Imagery: NASA / ESA archives, plus AI-generated concept art where labeled</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <!-- Vercel Web Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
