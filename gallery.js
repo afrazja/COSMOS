@@ -89,6 +89,18 @@
     lbTitle.textContent = item.title;
     lbDesc.textContent = item.desc;
     lbCredit.textContent = item.credit;
+
+    // fact chips (distance, size, year, telescope…)
+    let factsEl = document.getElementById('lb-facts');
+    if (!factsEl) {
+      factsEl = document.createElement('ul');
+      factsEl.id = 'lb-facts';
+      factsEl.className = 'lb-facts';
+      lbDesc.parentNode.insertBefore(factsEl, lbDesc);
+    }
+    factsEl.innerHTML = (item.facts || [])
+      .map((f) => '<li><strong>' + esc(f[0]) + '</strong><span>' + esc(f[1]) + '</span></li>')
+      .join('');
     // warm the neighbours' cache for instant paging
     [current + 1, current - 1].forEach((i) => {
       const n = visible[(i + visible.length) % visible.length];

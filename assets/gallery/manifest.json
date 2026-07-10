@@ -6,7 +6,17 @@
   "credit": "NASA/ESA/CSA · Webb",
   "desc": "Webb’s first look into the Carina Nebula: a coastline of gas and dust seven light-years tall, where hundreds of new stars are igniting.",
   "w": 1600,
-  "h": 927
+  "h": 927,
+  "facts": [
+   [
+    "7,600 ly",
+    "away"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/pillars-webb.webp",
@@ -15,7 +25,21 @@
   "credit": "NASA/ESA/CSA · Webb",
   "desc": "The most famous towers in astronomy, reimagined in Webb’s infrared — newborn stars glow inside columns of gas five light-years tall.",
   "w": 1200,
-  "h": 1200
+  "h": 1200,
+  "facts": [
+   [
+    "6,500 ly",
+    "away"
+   ],
+   [
+    "5 ly",
+    "pillar height"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/southern-ring.webp",
@@ -24,7 +48,17 @@
   "credit": "NASA/ESA/CSA · Webb",
   "desc": "A dying star’s final act: shells of gas expelled over thousands of years, lit from within by the fading white dwarf at the center.",
   "w": 1600,
-  "h": 742
+  "h": 742,
+  "facts": [
+   [
+    "2,500 ly",
+    "away"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/stephans-quintet.webp",
@@ -33,7 +67,21 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "Five galaxies locked in a gravitational dance — two of them in mid-collision, sparking waves of new star formation.",
   "w": 1042,
-  "h": 1536
+  "h": 1536,
+  "facts": [
+   [
+    "290M ly",
+    "away"
+   ],
+   [
+    "5",
+    "galaxies"
+   ],
+   [
+    "Hubble",
+    "telescope"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/deep-field.webp",
@@ -42,7 +90,17 @@
   "credit": "NASA/ESA/CSA · Webb",
   "desc": "The deepest infrared view of the universe: thousands of galaxies in a patch of sky the size of a grain of sand at arm’s length.",
   "w": 1600,
-  "h": 1633
+  "h": 1633,
+  "facts": [
+   [
+    "13+ B ly",
+    "deepest light"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/tarantula.webp",
@@ -51,7 +109,21 @@
   "credit": "NASA/ESA/CSA · Webb",
   "desc": "The most violent star factory in our galactic neighborhood — 161,000 light-years away, home to the most massive stars known.",
   "w": 1600,
-  "h": 925
+  "h": 925,
+  "facts": [
+   [
+    "161,000 ly",
+    "away"
+   ],
+   [
+    "340 ly",
+    "across"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/cartwheel.webp",
@@ -60,7 +132,21 @@
   "credit": "NASA/ESA/CSA · Webb",
   "desc": "The aftermath of a bullseye: a smaller galaxy punched through this one 400 million years ago, sending rings of star birth outward like ripples.",
   "w": 1600,
-  "h": 1473
+  "h": 1473,
+  "facts": [
+   [
+    "500M ly",
+    "away"
+   ],
+   [
+    "145,000 ly",
+    "across"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/eagle-pillars.webp",
@@ -69,7 +155,17 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "Hubble’s 2015 return to the Eagle Nebula’s pillars — the image that defined a generation of astronomy.",
   "w": 1600,
-  "h": 1669
+  "h": 1669,
+  "facts": [
+   [
+    "6,500 ly",
+    "away"
+   ],
+   [
+    "1995 / 2015",
+    "Hubble"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/veil.webp",
@@ -78,7 +174,21 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "Shrapnel from a star that exploded 8,000 years ago, still expanding — a supernova remnant 110 light-years across.",
   "w": 1600,
-  "h": 1199
+  "h": 1199,
+  "facts": [
+   [
+    "2,100 ly",
+    "away"
+   ],
+   [
+    "110 ly",
+    "across"
+   ],
+   [
+    "2015",
+    "Hubble"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/whirlpool.webp",
@@ -87,7 +197,17 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "M51 and its small companion: the textbook spiral galaxy, its arms compressed into star-forming brilliance by the encounter.",
   "w": 1600,
-  "h": 1110
+  "h": 1110,
+  "facts": [
+   [
+    "31M ly",
+    "away"
+   ],
+   [
+    "2005",
+    "Hubble"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/butterfly.webp",
@@ -96,7 +216,21 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "Wings of gas heated to 20,000 degrees, flowing from a dying star at a million kilometers per hour.",
   "w": 1600,
-  "h": 1865
+  "h": 1865,
+  "facts": [
+   [
+    "3,400 ly",
+    "away"
+   ],
+   [
+    "2 ly",
+    "wingspan"
+   ],
+   [
+    "2009",
+    "Hubble"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/ultra-deep.webp",
@@ -105,7 +239,21 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "Hubble stared at one dark speck of sky for weeks and found 10,000 galaxies — some of their light older than the Earth itself.",
   "w": 1600,
-  "h": 1461
+  "h": 1461,
+  "facts": [
+   [
+    "10,000",
+    "galaxies"
+   ],
+   [
+    "13B ly",
+    "deepest"
+   ],
+   [
+    "2014",
+    "Hubble"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/sombrero.webp",
@@ -114,7 +262,21 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "A galaxy seen edge-on, its dust lane and glowing bulge forming the brim and crown that give M104 its name.",
   "w": 1181,
-  "h": 1476
+  "h": 1476,
+  "facts": [
+   [
+    "28M ly",
+    "away"
+   ],
+   [
+    "50,000 ly",
+    "across"
+   ],
+   [
+    "2003",
+    "Hubble"
+   ]
+  ]
  },
  {
   "file": "assets/gallery/orion.webp",
@@ -123,6 +285,321 @@
   "credit": "NASA/ESA · Hubble",
   "desc": "The nearest great star factory to Earth — visible to your naked eye as the middle “star” in Orion’s sword.",
   "w": 1280,
-  "h": 1280
+  "h": 1280,
+  "facts": [
+   [
+    "1,300 ly",
+    "away"
+   ],
+   [
+    "24 ly",
+    "across"
+   ],
+   [
+    "2006",
+    "Hubble"
+   ]
+  ]
+ },
+ {
+  "file": "assets/gallery/earthrise.webp",
+  "title": "Earthrise",
+  "tag": "solar",
+  "credit": "NASA · Apollo 8",
+  "desc": "The first Earthrise ever witnessed by humans — Apollo 8, Christmas Eve 1968. The photo credited with helping start the environmental movement.",
+  "facts": [
+   [
+    "Apollo 8",
+    "1968"
+   ],
+   [
+    "384,000 km",
+    "from home"
+   ]
+  ],
+  "w": 1600,
+  "h": 1600
+ },
+ {
+  "file": "assets/gallery/horsehead.webp",
+  "title": "Horsehead Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "A cosmic seahorse sculpted from a wall of dust, photographed in infrared for Hubble’s 23rd birthday.",
+  "facts": [
+   [
+    "1,300 ly",
+    "away"
+   ],
+   [
+    "2013",
+    "Hubble"
+   ]
+  ],
+  "w": 1600,
+  "h": 1672
+ },
+ {
+  "file": "assets/gallery/jupiter-juno.webp",
+  "title": "Crescent Jupiter",
+  "tag": "solar",
+  "credit": "NASA · Juno",
+  "desc": "Jupiter as a crescent no telescope on Earth can ever see — caught by the Juno spacecraft with the Great Red Spot in view.",
+  "facts": [
+   [
+    "JunoCam",
+    "camera"
+   ],
+   [
+    "~1.3 Earths",
+    "storm width"
+   ]
+  ],
+  "w": 825,
+  "h": 1206
+ },
+ {
+  "file": "assets/gallery/antennae.webp",
+  "title": "Antennae Galaxies",
+  "tag": "galaxy",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "Two galaxies caught mid-collision, flinging streams of stars into space. In about four billion years, the Milky Way and Andromeda may look like this.",
+  "facts": [
+   [
+    "62M ly",
+    "away"
+   ],
+   [
+    "2006",
+    "Hubble"
+   ]
+  ],
+  "w": 1600,
+  "h": 1588
+ },
+ {
+  "file": "assets/gallery/ring-webb.webp",
+  "title": "Ring Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "A dying sun-like star shedding its outer layers, seen through Webb’s two infrared eyes — a preview of our own Sun’s far future.",
+  "facts": [
+   [
+    "2,500 ly",
+    "away"
+   ],
+   [
+    "2023",
+    "Webb"
+   ]
+  ],
+  "w": 1600,
+  "h": 1339
+ },
+ {
+  "file": "assets/gallery/saturn-smile.webp",
+  "title": "The Day the Earth Smiled",
+  "tag": "solar",
+  "credit": "NASA/JPL · Cassini",
+  "desc": "Cassini photographed Saturn backlit by the Sun — and in the full frame, Earth is a pale blue dot beneath the rings. NASA told the world to look up and smile.",
+  "facts": [
+   [
+    "1.4B km",
+    "away"
+   ],
+   [
+    "2013",
+    "Cassini"
+   ]
+  ],
+  "w": 1600,
+  "h": 622
+ },
+ {
+  "file": "assets/gallery/mystic.webp",
+  "title": "Mystic Mountain",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "A three-light-year pillar in the Carina Nebula, shot for Hubble’s 20th anniversary — infant stars inside fire jets from its peaks.",
+  "facts": [
+   [
+    "7,500 ly",
+    "away"
+   ],
+   [
+    "3 ly",
+    "peak height"
+   ],
+   [
+    "2010",
+    "Hubble"
+   ]
+  ],
+  "w": 1600,
+  "h": 1473
+ },
+ {
+  "file": "assets/gallery/pale-blue.webp",
+  "title": "Pale Blue Dot",
+  "tag": "solar",
+  "credit": "NASA/JPL · Voyager 1",
+  "desc": "Voyager 1 turned its camera home from 6 billion kilometers away. That dot in the sunbeam is everyone who ever lived. (2020 remaster of the 1990 original.)",
+  "facts": [
+   [
+    "6B km",
+    "away"
+   ],
+   [
+    "1990",
+    "Voyager 1"
+   ]
+  ],
+  "w": 1600,
+  "h": 1582
+ },
+ {
+  "file": "assets/gallery/crab.webp",
+  "title": "Crab Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "The wreckage of a supernova that Chinese astronomers watched appear in the year 1054 — still expanding, with a spinning neutron star at its heart.",
+  "facts": [
+   [
+    "6,500 ly",
+    "away"
+   ],
+   [
+    "1054",
+    "seen exploding"
+   ],
+   [
+    "2005",
+    "Hubble"
+   ]
+  ],
+  "w": 1600,
+  "h": 1600
+ },
+ {
+  "file": "assets/gallery/neptune-webb.webp",
+  "title": "Neptune’s Rings",
+  "tag": "solar",
+  "credit": "NASA/ESA/CSA · Webb",
+  "desc": "Neptune glowing in Webb’s infrared — the clearest view of its delicate rings since Voyager 2 flew past in 1989.",
+  "facts": [
+   [
+    "4.3B km",
+    "from the Sun"
+   ],
+   [
+    "2022",
+    "Webb"
+   ]
+  ],
+  "w": 1059,
+  "h": 1059
+ },
+ {
+  "file": "assets/gallery/bubble.webp",
+  "title": "Bubble Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "A single massive star inflating a soap bubble of gas seven light-years wide — big enough to hold our Sun and its nearest neighbor star inside it.",
+  "facts": [
+   [
+    "7,100 ly",
+    "away"
+   ],
+   [
+    "7 ly",
+    "bubble width"
+   ],
+   [
+    "2016",
+    "Hubble"
+   ]
+  ],
+  "w": 1600,
+  "h": 1520
+ },
+ {
+  "file": "assets/gallery/pluto.webp",
+  "title": "Pluto & Charon",
+  "tag": "solar",
+  "credit": "NASA · New Horizons",
+  "desc": "Pluto and its moon Charon in true color, from the spacecraft that sprinted nine and a half years to reach them.",
+  "facts": [
+   [
+    "5B km",
+    "away"
+   ],
+   [
+    "2015",
+    "New Horizons"
+   ]
+  ],
+  "w": 1600,
+  "h": 1600
+ },
+ {
+  "file": "assets/gallery/lagoon.webp",
+  "title": "Lagoon Nebula",
+  "tag": "nebula",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "The stormy heart of the Lagoon Nebula, carved by the radiation of one giant young star — Hubble’s 28th-birthday portrait.",
+  "facts": [
+   [
+    "4,000 ly",
+    "away"
+   ],
+   [
+    "2018",
+    "Hubble"
+   ]
+  ],
+  "w": 1600,
+  "h": 2017
+ },
+ {
+  "file": "assets/gallery/sun-sdo.webp",
+  "title": "X-Class Solar Flare",
+  "tag": "solar",
+  "credit": "NASA · SDO",
+  "desc": "Our own star mid-tantrum: an X-class flare — the most powerful class — caught by the observatory that photographs the Sun every 0.75 seconds.",
+  "facts": [
+   [
+    "150M km",
+    "away"
+   ],
+   [
+    "X-class",
+    "strongest flares"
+   ]
+  ],
+  "w": 1600,
+  "h": 1478
+ },
+ {
+  "file": "assets/gallery/andromeda.webp",
+  "title": "Andromeda",
+  "tag": "galaxy",
+  "credit": "NASA/ESA · Hubble",
+  "desc": "A sweep across our neighbor galaxy — the sharpest big-galaxy portrait ever made. The full mosaic resolves 100 million individual stars.",
+  "facts": [
+   [
+    "2.5M ly",
+    "away"
+   ],
+   [
+    "100M",
+    "stars resolved"
+   ],
+   [
+    "2015",
+    "Hubble"
+   ]
+  ],
+  "w": 1280,
+  "h": 409
  }
 ]
