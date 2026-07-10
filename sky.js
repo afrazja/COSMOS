@@ -118,8 +118,13 @@
   /* ---------- 3. Upcoming launches ---------- */
   const list = document.getElementById('launch-list');
 
-  fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=6')
+  // cached server proxy first; direct API as local-dev fallback
+  fetch('/api/launches')
     .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .catch(() =>
+      fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=6')
+        .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    )
     .then((d) => {
       const launches = (d.results || []).filter((l) => l.net);
       if (!launches.length) throw new Error('empty');

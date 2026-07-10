@@ -561,4 +561,14 @@
 
   window.addEventListener('resize', updateLanding);
   updateLanding();
+
+  /* ---------- 9. Skip buttons: exit a pinned section instantly ---------- */
+  document.querySelectorAll('.skip-pin').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pin = btn.closest('.planets-pin, .landing-pin');
+      if (!pin) return;
+      const target = pin.offsetTop + pin.offsetHeight - window.innerHeight + 4;
+      window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  });
 })();

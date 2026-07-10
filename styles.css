@@ -703,6 +703,34 @@ a.nebula-meta:hover { color: var(--teal); }
   box-shadow: 0 0 12px var(--glow-teal), 0 0 26px var(--glow-teal);
 }
 
+/* escape hatch for pinned sections */
+.skip-pin {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.2rem);
+  bottom: 3vh;
+  z-index: 8;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  background: rgba(5, 6, 15, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.skip-pin:hover,
+.skip-pin:focus-visible { color: var(--teal); border-color: rgba(94, 234, 212, 0.55); }
+/* the planets stage has its dots on the right — lift the skip above them on phones */
+@media (max-width: 960px) {
+  .skip-pin { bottom: 2vh; right: 0.8rem; }
+}
+
 .stage-hint {
   position: absolute;
   bottom: 3vh;
@@ -2513,6 +2541,35 @@ body.app-mode #nav {
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 .footer-about:hover { color: var(--teal); border-color: var(--teal); }
+
+/* ============================================================
+   404 — lost in space
+   ============================================================ */
+.lost-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+.lost-code {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(6rem, 22vw, 13rem);
+  line-height: 1;
+  background: linear-gradient(120deg, var(--violet), var(--teal) 55%, var(--ember));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
+}
+.lost-page h1 { font-size: clamp(1.6rem, 4.5vw, 2.6rem); margin: 0.6rem 0 1rem; }
+.lost-page .section-sub { margin: 0 auto 2rem; }
+.lost-page .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
 /* ============================================================
    FOOTER
