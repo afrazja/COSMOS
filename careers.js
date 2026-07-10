@@ -9,7 +9,7 @@
   /* ---------- the ten careers ---------- */
   const CAREERS = [
     {
-      key: 'rocket', icon: '🚀', title: 'Rocket Engineer',
+      key: 'rocket', photo: 'assets/careers/rocket.webp', photoCap: 'A real flight engine on the move at NASA’s test stand.', icon: '🚀', title: 'Rocket Engineer',
       tag: 'Builds the machines that leave Earth',
       wow: 'Modern boosters fly to space, come back, and are caught in mid-air by giant metal arms — engineers designed every millimeter of that.',
       subjects: ['Math', 'Physics', 'Tech / shop class'],
@@ -18,7 +18,7 @@
       path: 'Aerospace or mechanical engineering degree'
     },
     {
-      key: 'robot', icon: '🤖', title: 'Robotics Engineer',
+      key: 'robot', photo: 'assets/careers/robot.webp', photoCap: 'Perseverance in the clean room, being readied for Mars.', icon: '🤖', title: 'Robotics Engineer',
       tag: 'Builds rovers that explore where humans can’t yet',
       wow: 'The people who drive the Mars rovers send the commands at night, then sleep — the rover does its day’s work 250 million km away, alone.',
       subjects: ['Math', 'Physics', 'Computer science'],
@@ -27,7 +27,7 @@
       path: 'Robotics, mechatronics or electrical engineering'
     },
     {
-      key: 'control', icon: '🎧', title: 'Flight Controller',
+      key: 'control', photo: 'assets/careers/control.webp', photoCap: 'Mission Control, Houston, during Apollo. Average age: about 28.', icon: '🎧', title: 'Flight Controller',
       tag: 'The calm voice in Mission Control',
       wow: 'The average age in Mission Control when Apollo 11 landed on the Moon was about 28 — most of them had been students six years earlier.',
       subjects: ['Physics', 'Math', 'Any subject that teaches calm under pressure'],
@@ -36,7 +36,7 @@
       path: 'Engineering or physics degree, then agency operations training'
     },
     {
-      key: 'astro', icon: '🌌', title: 'Astrophysicist',
+      key: 'astro', photo: 'assets/careers/astro.webp', photoCap: 'A Webb operator on the day the telescope’s mirror unfolded.', icon: '🌌', title: 'Astrophysicist',
       tag: 'Figures out how the universe works',
       wow: 'The first photo of a black hole needed a telescope the size of Earth — so scientists linked eight telescopes on four continents into one.',
       subjects: ['Math (all of it)', 'Physics', 'Computer science'],
@@ -45,7 +45,7 @@
       path: 'Physics degree, then a PhD in astrophysics'
     },
     {
-      key: 'planet', icon: '🪐', title: 'Planetary Scientist',
+      key: 'planet', photo: 'assets/careers/planet.webp', photoCap: 'Real Moon dust in NASA’s Lunar Receiving Laboratory.', icon: '🪐', title: 'Planetary Scientist',
       tag: 'Studies other worlds like a detective',
       wow: 'We have better maps of Mars than of Earth’s own ocean floor — made by scientists who have never left this planet.',
       subjects: ['Science', 'Geography', 'Chemistry'],
@@ -54,7 +54,7 @@
       path: 'Geology, chemistry or physics, then planetary science'
     },
     {
-      key: 'code', icon: '💻', title: 'Space Software Engineer',
+      key: 'code', photo: 'assets/careers/code.webp', photoCap: 'Katherine Johnson — the mathematician who calculated Apollo’s path.', icon: '💻', title: 'Space Software Engineer',
       tag: 'Writes the code that flies',
       wow: 'The code that landed Apollo on the Moon, printed out, stood taller than the woman who led its creation — and it never once crashed.',
       subjects: ['Computer science', 'Math', 'Logic puzzles'],
@@ -63,7 +63,7 @@
       path: 'Computer science or software engineering degree'
     },
     {
-      key: 'doctor', icon: '🩺', title: 'Flight Surgeon',
+      key: 'doctor', photo: 'assets/careers/doctor.webp', photoCap: 'A NASA doctor examines a Gemini astronaut, 1965.', icon: '🩺', title: 'Flight Surgeon',
       tag: 'Keeps astronauts alive and healthy',
       wow: 'Astronauts grow up to 5 cm taller in space as their spines stretch — and it’s a doctor’s job to know what that does to a body over a year.',
       subjects: ['Biology', 'Chemistry', 'Physical education'],
@@ -72,7 +72,7 @@
       path: 'Medical degree, then aerospace medicine'
     },
     {
-      key: 'suit', icon: '🧑‍🚀', title: 'Spacesuit Designer',
+      key: 'suit', photo: 'assets/careers/suit.webp', photoCap: 'John Glenn being suited up, 1962 — read the name tag.', icon: '🧑‍🚀', title: 'Spacesuit Designer',
       tag: 'Designs one-person spaceships you can wear',
       wow: 'A spacesuit has 16 layers and its own life support — the Apollo suits were sewn by hand, by seamstresses, to a tolerance of 0.4 millimeters.',
       subjects: ['Art & design', 'Physics', 'Textiles / making things'],
@@ -81,7 +81,7 @@
       path: 'Industrial design, materials or mechanical engineering'
     },
     {
-      key: 'bio', icon: '🧬', title: 'Astrobiologist',
+      key: 'bio', photo: 'assets/careers/bio.webp', photoCap: 'Standing on Europa’s ice, Jupiter rising (artist’s illustration).', icon: '🧬', title: 'Astrobiologist',
       tag: 'Hunts for life beyond Earth',
       wow: 'Tiny animals called tardigrades have survived the open vacuum of space — which means life is tougher than we ever guessed.',
       subjects: ['Biology', 'Chemistry', 'Earth science'],
@@ -90,7 +90,7 @@
       path: 'Biology or chemistry degree, then astrobiology research'
     },
     {
-      key: 'story', icon: '🎨', title: 'Mission Storyteller',
+      key: 'story', photo: 'assets/gallery/pillars-webb.webp', photoCap: 'Raw telescope data, turned into wonder — by an imaging artist.', icon: '🎨', title: 'Mission Storyteller',
       tag: 'Turns data into wonder',
       wow: 'The Webb telescope’s famous pictures aren’t taken in color — imaging artists translate invisible infrared into the images that make the world gasp.',
       subjects: ['Art', 'Writing', 'Media & languages'],
@@ -173,6 +173,7 @@
         '<span class="career-chevron" aria-hidden="true">▾</span>' +
         '</button>' +
         '<div class="career-body">' +
+        (c.photo ? '<figure class="career-photo"><img src="' + c.photo + '" alt="" loading="lazy" /><figcaption>' + c.photoCap + '</figcaption></figure>' : '') +
         '<p class="career-wow">' + c.wow + '</p>' +
         '<div class="career-block"><h4>School subjects that matter</h4><ul>' +
         c.subjects.map((s) => '<li>' + s + '</li>').join('') + '</ul></div>' +
