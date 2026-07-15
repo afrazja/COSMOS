@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The System â€” COSMOS</title>
-  <meta name="description" content="A fullscreen 3D solar system â€” fly between the planets, zoom in, and orbit any world from any angle." />
+  <title>The System — COSMOS</title>
+  <meta name="description" content="A fullscreen 3D solar system — fly between the planets, zoom in, and orbit any world from any angle." />
   <link rel="canonical" href="https://cosmos-space-one.vercel.app/system" />
   <meta name="theme-color" content="#05060f" />
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="COSMOS" />
-  <meta property="og:title" content="The System â€” COSMOS" />
-  <meta property="og:description" content="A fullscreen 3D solar system â€” fly between the planets, zoom in, and orbit any world from any angle." />
+  <meta property="og:title" content="The System — COSMOS" />
+  <meta property="og:description" content="A fullscreen 3D solar system — fly between the planets, zoom in, and orbit any world from any angle." />
   <meta property="og:url" content="https://cosmos-space-one.vercel.app/system" />
   <meta property="og:image" content="https://cosmos-space-one.vercel.app/og-system.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The System â€” COSMOS" />
-  <meta name="twitter:description" content="A fullscreen 3D solar system â€” fly between the planets, zoom in, and orbit any world from any angle." />
+  <meta name="twitter:title" content="The System — COSMOS" />
+  <meta name="twitter:description" content="A fullscreen 3D solar system — fly between the planets, zoom in, and orbit any world from any angle." />
   <meta name="twitter:image" content="https://cosmos-space-one.vercel.app/og-system.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,15 +56,15 @@
   <main id="main" class="system-app">
     <p class="sr-only">Interactive three-dimensional map of the solar system. All of its
     information is also available without the map: use the travel buttons (Overview, Sun,
-    and Mercury through Neptune) to choose a body, and its full dossier â€” overview, facts,
-    strange-but-true details and mission history â€” appears in the dossier panel. The time
+    and Mercury through Neptune) to choose a body, and its full dossier — overview, facts,
+    strange-but-true details and mission history — appears in the dossier panel. The time
     slider changes the simulation speed.</p>
     <div id="orrery3d" aria-label="Interactive 3D solar system. Drag to orbit, scroll to zoom, click a planet to travel to it."></div>
 
     <!-- dossier: floating corner card, collapsible -->
     <aside class="app-panel" id="app-panel">
       <button class="panel-toggle" id="panel-toggle" aria-expanded="true">
-        <span>Dossier</span><span class="panel-chevron" aria-hidden="true">â–¾</span>
+        <span>Dossier</span><span class="panel-chevron" aria-hidden="true">▾</span>
       </button>
       <div class="app-panel-body" id="body-panel" aria-live="polite"></div>
     </aside>
@@ -76,7 +76,7 @@
     <div class="app-time">
       <label class="orrery-speed-label" for="orrery-speed">Time</label>
       <input type="range" id="orrery-speed" min="0" max="6" step="0.1" value="1" />
-      <span class="orrery-rate" id="orrery-rate">1 s â‰ˆ 10 days</span>
+      <span class="orrery-rate" id="orrery-rate">1 s ≈ 10 days</span>
     </div>
 
     <!-- about / credits -->
@@ -84,12 +84,12 @@
     <div class="app-info" id="app-info" hidden>
       <h3>The <em>system</em></h3>
       <p>Eight worlds, one star. Orbital periods follow true Kepler ratios; sizes and distances are stylized so everything stays visible.</p>
-      <p>Drag to orbit Â· scroll to zoom Â· click any planet (or a chip below) to travel to it. The camera rides along with your planet while it orbits.</p>
-      <p class="app-credits">Earth map: NASA Â· other textures: AI-generated Â· <a href="mailto:afz.javan@gmail.com">âœ‰ afz.javan@gmail.com</a></p>
+      <p>Drag to orbit · scroll to zoom · click any planet (or a chip below) to travel to it. The camera rides along with your planet while it orbits.</p>
+      <p class="app-credits">Earth map: NASA · other textures: AI-generated · <a href="mailto:afz.javan@gmail.com">✉ afz.javan@gmail.com</a></p>
     </div>
 
     <!-- first-visit hint, fades away -->
-    <p class="app-hint" id="app-hint">drag to orbit &nbsp;Â·&nbsp; scroll to zoom &nbsp;Â·&nbsp; click a planet to travel</p>
+    <p class="app-hint" id="app-hint">drag to orbit &nbsp;·&nbsp; scroll to zoom &nbsp;·&nbsp; click a planet to travel</p>
   </main>
 
   <script src="script.js"></script>
