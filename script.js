@@ -562,13 +562,18 @@
   window.addEventListener('resize', updateLanding);
   updateLanding();
 
-  /* ---------- 9. Skip buttons: exit a pinned section instantly ---------- */
+  /* ---------- 9. Skip buttons: jump to the section AFTER the pin ---------- */
   document.querySelectorAll('.skip-pin').forEach((btn) => {
     btn.addEventListener('click', () => {
       const pin = btn.closest('.planets-pin, .landing-pin');
       if (!pin) return;
-      const target = pin.offsetTop + pin.offsetHeight - window.innerHeight + 4;
-      window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' });
+      const navH = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
+      ) || 76;
+      // the pin's bottom edge is the top of the next section; land there,
+      // offset by the fixed nav so the next heading isn't tucked under it
+      const pinBottom = Math.round(pin.getBoundingClientRect().bottom + window.scrollY);
+      window.scrollTo({ top: pinBottom - navH + 1, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   });
 })();
